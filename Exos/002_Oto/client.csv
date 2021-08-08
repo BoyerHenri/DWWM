@@ -1,0 +1,6 @@
+id_client,id_commercial,request_client,name_client,lastname_client,mail_client,phonenumber_client,status_client,address_client,zipcode_client,city_client,country_client
+,,devis,OTO,Bus,ottobus@toxico.fr,3333333333,PART, 1 Rue des pendus,75000,Plan-de-Cuques,France
+,,vente,TESLA,Nikolas,,5555555555,PRO, 2 Avenue des rives,36200,Nice,France
+,,tunning,WESH,Kéké,chezlesautres@cassos.com,,PRO, 7 Boulevard des Ecorches,80000,Amiens,France
+,,reparation,CASSETOUT,Fabrice,bobo@velo.fr,,PART, 3 Av Poulainville,25000,Parisse,France
+,,entretien,JOSETTE,Mikeline,,1111111111,PART, 52 Chemin des chats,93200,Marseille,France
