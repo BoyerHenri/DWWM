@@ -14,10 +14,10 @@ CREATE TABLE client(
    name_client CHAR(25) NOT NULL,
    lastName_client CHAR(25) NOT NULL,
    mail_client CHAR(25),
-   phoneNumber_client INT,
+   phoneNumber_client SMALLINT,
    status_client CHAR(25) NOT NULL,
    adress_client CHAR(50) NOT NULL,
-   zipCode_client INT NOT NULL,
+   zipCode_client SMALLINT NOT NULL,
    city_client CHAR(20) NOT NULL,
    country_client CHAR(20),
    -- Contraintes
@@ -32,7 +32,7 @@ CREATE TABLE commercial(
    name_commercial CHAR(25) NOT NULL,
    lastName_commercial CHAR(20) NOT NULL,
    mail_commercial CHAR(50) NOT NULL,
-   phone_commercial INT NOT NULL,
+   phone_commercial SMALLINT NOT NULL,
    -- Contraintes
    PRIMARY KEY (id_commercial)
 );
