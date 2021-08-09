@@ -9,48 +9,53 @@ USE Oto;
 -- BDD Client
 -- status_client = Type de client PRO ou PARTAUTO_INCREMENT
 CREATE TABLE client(
-   id_client  SMALLINT NOT NULL,
+   id_client  INT NOT NULL AUTO_INCREMENT,
+   -- request_client 'achat vehicule' et/ou 'options' et/ou 'accessoires' et/ou 'reparations' et/ou 'pose' et/ou 'entretien'
    request_client CHAR(25) NOT NULL,
    name_client CHAR(25) NOT NULL,
    lastName_client CHAR(25) NOT NULL,
-   mail_client CHAR(25),
-   phoneNumber_client INT,
-   status_client CHAR(25) NOT NULL,
+   mail_client CHAR(40),
+   phoneNumber_client VARCHAR(20),
+   -- status_client : PRO ou PART
+   status_client CHAR(10) NOT NULL,
    adress_client CHAR(50) NOT NULL,
-   zipCode_client INT NOT NULL,
-   city_client CHAR(20) NOT NULL,
-   country_client CHAR(20),
+   zipCode_client VARCHAR(10) NOT NULL,
+   city_client VARCHAR(20) NOT NULL,
+   country_client VARCHAR(20),
    -- Contraintes
    PRIMARY KEY (id_client)
 );
 -- Liste des commerciaux
 -- spe_commercial = Type de vente PRO ou PART
 CREATE TABLE commercial(
-   id_commercial SMALLINT NOT NULL AUTO_INCREMENT,
-   spe_commercial CHAR(5) NOT NULL,
+   id_commercial INT NOT NULL AUTO_INCREMENT,
+   -- spe_commercial : PRO ou PART
+   spe_commercial CHAR(10) NOT NULL,
    name_commercial CHAR(25) NOT NULL,
-   lastName_commercial CHAR(20) NOT NULL,
-   mail_commercial CHAR(50) NOT NULL,
-   phone_commercial INT NOT NULL,
+   lastName_commercial CHAR(25) NOT NULL,
+   mail_commercial CHAR(40) NOT NULL,
+   phone_commercial VARCHAR(20) NOT NULL,
    -- Contraintes
    PRIMARY KEY (id_commercial)
 );
 -- Service VENTE
 -- buy_funding = Type de finacement, CRED ou CASH
 CREATE TABLE buyVehicle(
-   id_buy SMALLINT NOT NULL AUTO_INCREMENT,
+   id_buy INT NOT NULL AUTO_INCREMENT,
    buy_date DATETIME NOT NULL,
+   -- buy_funding CRED ou COMPT
    buy_funding CHAR(10) NOT NULL,
-   id_storageVehicles SMALLINT,
+   id_storageVehicles INT NOT NULL,
    -- Contraintes
    PRIMARY KEY (id_buy)
 );
 -- Service ATELIER
 -- type_maintenance = Description de la maintenance.
 CREATE TABLE maintenance(
-   id_maintenance SMALLINT NOT NULL AUTO_INCREMENT,
-   id_technician SMALLINT NOT NULL,
-   type_maintenance CHAR(50) NOT NULL,
+   id_maintenance INT NOT NULL AUTO_INCREMENT,
+   id_technician INT NOT NULL,
+   -- type_maintenance repair et/ou entretien et/ou pose
+   type_maintenance CHAR(10) NOT NULL,
    price_maintenance DECIMAL(6,2) NOT NULL,
    date_maintenance DATETIME NOT NULL,
    -- Contraintes
@@ -58,8 +63,9 @@ CREATE TABLE maintenance(
 );
 -- type_repair = Description de la maintenance.
 CREATE TABLE repair(
-   id_repair SMALLINT NOT NULL AUTO_INCREMENT,
-   type_repair CHAR(50) NOT NULL,
+   id_repair INT NOT NULL AUTO_INCREMENT,
+   -- type_repair Bréve description de l'intervention
+   type_repair CHAR(120) NOT NULL,
    price_repair DECIMAL(6,2) NOT NULL,
    date_repair DATETIME NOT NULL,
    -- Contraintes
@@ -67,16 +73,18 @@ CREATE TABLE repair(
 );
 -- Service MAGASIN
 CREATE TABLE storedProducts(
-   id_products SMALLINT NOT NULL AUTO_INCREMENT,
-   name_storedProducts CHAR(20) NOT NULL,
+   id_products INT NOT NULL AUTO_INCREMENT,
+   name_storedProducts CHAR(50) NOT NULL,
    price_storedProducts DECIMAL(6,2) NOT NULL,
-   stock_storedProducts SMALLINT,
+   stock_storedProducts INT,
+   -- id_technician Indique le vendeur/l'intervennant/employé mise en rayon
    id_technician SMALLINT NOT NULL,
    -- Contraintes
    PRIMARY KEY (id_products)
 );
 CREATE TABLE options(
-   id_options SMALLINT NOT NULL AUTO_INCREMENT,
+   id_options INT NOT NULL AUTO_INCREMENT,
+   -- type_options Bréve description de la pose
    type_options CHAR(50) NOT NULL,
    price_options DECIMAL(6,2) NOT NULL,
    date_options DATETIME NOT NULL,
@@ -85,12 +93,13 @@ CREATE TABLE options(
 );
 -- Stocks vehicules
 CREATE TABLE storageVehicles(
-   id_storageVehicles SMALLINT NOT NULL AUTO_INCREMENT,
+   id_storageVehicles INT NOT NULL AUTO_INCREMENT,
    name_storageVehicles CHAR(50) NOT NULL,
    brand_storageVehicles VARCHAR(50),
-   stock_storageVehicles SMALLINT,
+   stock_storageVehicles INT,
    price_storageVehicles DECIMAL(15,2) NOT NULL,
-   age_storageVehicles SMALLINT NOT NULL,
+   -- age_storageVehicles 0=Neuf X=Année première mise en circulation (occasion)
+   age_storageVehicles SMALLINT,
    -- Contraintes
    PRIMARY KEY (id_storageVehicles)
 );
