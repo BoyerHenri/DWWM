@@ -9,7 +9,7 @@ USE Oto;
 -- BDD Client
 -- status_client = Type de client PRO ou PARTAUTO_INCREMENT
 CREATE TABLE client(
-   id_client  SMALLINT NOT NULL AUTO_INCREMENT,
+   id_client  SMALLINT NOT NULL,
    request_client CHAR(25) NOT NULL,
    name_client CHAR(25) NOT NULL,
    lastName_client CHAR(25) NOT NULL,
@@ -21,8 +21,7 @@ CREATE TABLE client(
    city_client CHAR(20) NOT NULL,
    country_client CHAR(20),
    -- Contraintes
-   PRIMARY KEY (id_client),
-   UNIQUE (mail_client)
+   PRIMARY KEY (id_client)
 );
 -- Liste des commerciaux
 -- spe_commercial = Type de vente PRO ou PART
