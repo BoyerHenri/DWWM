@@ -86,7 +86,7 @@ CREATE TABLE options(
    id_options INT NOT NULL AUTO_INCREMENT,
    -- type_options Bréve description de la pose
    type_options CHAR(50) NOT NULL,
-   price_options DECIMAL(6,2) NOT NULL,
+   price_options DECIMAL(10,2) NOT NULL,
    date_options DATETIME NOT NULL,
    -- Contraintes
    PRIMARY KEY (id_options)
@@ -106,8 +106,8 @@ CREATE TABLE storageVehicles(
 
 -- Lien entre les tables
 CREATE TABLE ask(
-   id_client SMALLINT,
-   id_commercial SMALLINT,
+   id_client INT,
+   id_commercial INT,
    PRIMARY KEY (id_client,id_commercial),
    FOREIGN KEY (id_client) REFERENCES client(id_client),
    FOREIGN KEY (id_commercial) REFERENCES commercial(id_commercial)
@@ -118,16 +118,18 @@ CREATE TABLE ask(
 -- VAT_value = Valeur TVA
 -- quote_date = Date de l'émission du devis
 CREATE TABLE request(
-   id_commercial SMALLINT,
-   id_buy SMALLINT,
-   id_maintenance SMALLINT,
-   id_repair SMALLINT,
-   id_client SMALLINT NOT NULL,
-   finalQuote_price_HT DECIMAL(6,2) NOT NULL,
-   finalQuote_price_TTC DECIMAL(6,2) NOT NULL,
+   id_commercial INT,
+   id_buy INT,
+   id_maintenance INT,
+   id_repair INT,
+   id_client INT NOT NULL,
+   finalQuote_price_HT DECIMAL(15,2) NOT NULL,
+   finalQuote_price_TTC DECIMAL(15,2) NOT NULL,
    VAT_value DECIMAL(4,2) NOT NULL,
    quote_date DATETIME NOT NULL,
+   -- quote_accept 0=Devis emis 1=Devis accepté
    quote_accept SMALLINT,
+   -- quote_paid 0=facture non payée 1=facture payée
    quote_paid SMALLINT,
    quote_paidDate DATETIME NOT NULL,
    PRIMARY KEY (id_commercial,id_buy,id_maintenance,id_repair),
@@ -138,18 +140,18 @@ CREATE TABLE request(
 );
 -- Verification du stock de vehicules
 CREATE TABLE checks(
-   id_buy SMALLINT,
-   id_storageVehicles SMALLINT,
+   id_buy INT,
+   id_storageVehicles INT,
    PRIMARY KEY (id_buy,id_storageVehicles),
    FOREIGN KEY (id_buy) REFERENCES buyVehicle(id_buy),
    FOREIGN KEY (id_storageVehicles) REFERENCES storageVehicles(id_storageVehicles)
 );
 -- Verification du stock en magasin
 CREATE TABLE need(
-   id_maintenance SMALLINT,
-   id_repair SMALLINT,
-   id_products SMALLINT,
-   id_options SMALLINT,
+   id_maintenance INT,
+   id_repair INT,
+   id_products INT,
+   id_options INT,
    PRIMARY KEY (id_maintenance,id_repair,id_products,id_options),
    FOREIGN KEY (id_maintenance) REFERENCES maintenance(id_maintenance),
    FOREIGN KEY (id_repair) REFERENCES repair(id_repair),
