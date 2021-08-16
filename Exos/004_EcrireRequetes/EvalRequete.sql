@@ -52,6 +52,19 @@ join products
 on ode_pro_id=pro_id
 where cus_lastname='Pikatchien'
 
+-- Q9. Afficher le catalogue des produits par catégorie, le nom des produits et 
+-- de la catégorie doivent être affichés.
+select cat_id,cat_name,pro_name
+from categories
+join products
+on pro_cat_id=cat_id
+
+-- Q10. Afficher l'organigramme du magasin de Compiègne Afficher le nom et 
+-- prénom des employés, classés par ordre alphabétique, ainsi que celui de leur supérieur 
+-- hiérarchique (et éventuellement leurs postes respectifs, si vous y parvenez).
+select concat(emp_firstname,' ',emp_lastname) as 'Employé', concat(emp_firstname,' ',emp_lastname) as 'Supérieur'
+from employees
+join employees
 
 
 
