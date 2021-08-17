@@ -69,6 +69,30 @@ on e.emp_superior_id=s.emp_id
 where e.emp_sho_id=3
 order by e.emp_lastname asc
 
+-- Q11. Quel produit a été vendu avec la remise la plus élevée ? 
+-- Afficherle numéro et le nom du produit, le numéro de commande, le numéro de ligne de commande, et le montant de la remise.
+select ode_discount,pro_id,pro_name,ord_id,ode_id
+from products
+join orders_details
+on pro_id=ode_pro_id
+join orders
+on ode_ord_id=ord_id
+where ode_discount=(select max(ode_discount) from orders_details)
 
+-- Q12. Combien y-a-t-il de clients canadiens ? 
+-- Afficher dans une colonne intitulée 'Nb clients Canada'
+select count(cus_countries_id) as "Nb clients canadiens"
+from customers
+where cus_countries_id='CA'
+
+-- Q13. Afficher le détail des commandes de 2020.
+select ode_id,ode_unit_price,ode_discount,ode_quantity,ode_ord_id,ode_pro_id,ord_order_date
+from orders_details
+join orders
+on ode_id=ord_id
+where year(ord_order_date)=2020
+
+-- Q14. Afficher les coordonnées des fournisseurs pour lesquels des 
+-- commandes ont été passées.
 
 
