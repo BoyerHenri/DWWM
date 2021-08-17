@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Linux (x86_64)
+-- MySQL dump 10.19  Distrib 10.3.31-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: gescom_afpa
+-- Host: localhost    Database: gescom_afpa_SAUVEGARDE
 -- ------------------------------------------------------
--- Server version	8.0.26-0ubuntu0.20.04.2
+-- Server version	10.3.31-MariaDB-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `gescom_afpa`
+-- Current Database: `gescom_afpa_SAUVEGARDE`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gescom_afpa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gescom_afpa_SAUVEGARDE` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `gescom_afpa`;
+USE `gescom_afpa_SAUVEGARDE`;
 
 --
 -- Table structure for table `categories`
@@ -29,15 +29,15 @@ USE `gescom_afpa`;
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `cat_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `cat_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(50) NOT NULL,
-  `cat_parent_id` int unsigned DEFAULT NULL,
+  `cat_parent_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`cat_id`),
   KEY `cat_parent_id` (`cat_parent_id`),
   CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`cat_parent_id`) REFERENCES `categories` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,12 +56,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `countries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `countries` (
-  `cou_id` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `cou_name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cou_id` char(2) NOT NULL,
+  `cou_name` varchar(45) NOT NULL,
   UNIQUE KEY `alpha2` (`cou_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,16 +80,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customers` (
-  `cus_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `cus_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cus_lastname` varchar(50) NOT NULL,
   `cus_firstname` varchar(50) NOT NULL,
   `cus_address` varchar(150) NOT NULL,
   `cus_zipcode` varchar(5) NOT NULL,
   `cus_city` varchar(50) NOT NULL,
   `cus_countries_id` char(2) NOT NULL,
-  `cus_mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cus_mail` varchar(255) NOT NULL,
   `cus_phone` varchar(10) NOT NULL,
   `cus_password` varchar(60) NOT NULL,
   `cus_add_date` datetime NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `customers` (
   PRIMARY KEY (`cus_id`),
   KEY `ibfk_customers_countries` (`cus_countries_id`),
   CONSTRAINT `ibfk_customers_countries` FOREIGN KEY (`cus_countries_id`) REFERENCES `countries` (`cou_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,12 +116,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `departments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `departments` (
-  `dep_id` tinyint unsigned NOT NULL AUTO_INCREMENT,
-  `dep_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `dep_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `dep_name` varchar(50) NOT NULL,
   PRIMARY KEY (`dep_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,24 +140,24 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `employees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employees` (
-  `emp_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `emp_superior_id` int unsigned DEFAULT NULL,
-  `emp_pos_id` int unsigned NOT NULL,
-  `emp_lastname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `emp_firstname` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `emp_address` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `emp_zipcode` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `emp_city` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `emp_mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `emp_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `emp_superior_id` int(10) unsigned DEFAULT NULL,
+  `emp_pos_id` int(10) unsigned NOT NULL,
+  `emp_lastname` varchar(50) NOT NULL,
+  `emp_firstname` varchar(50) NOT NULL,
+  `emp_address` varchar(150) NOT NULL,
+  `emp_zipcode` varchar(5) NOT NULL,
+  `emp_city` varchar(50) NOT NULL,
+  `emp_mail` varchar(255) NOT NULL,
   `emp_phone` varchar(10) NOT NULL,
   `emp_salary` decimal(8,2) unsigned DEFAULT NULL,
   `emp_enter_date` date NOT NULL,
   `emp_gender` char(1) NOT NULL,
-  `emp_children` tinyint NOT NULL,
-  `emp_sho_id` tinyint unsigned NOT NULL,
-  `emp_dep_id` tinyint unsigned NOT NULL,
+  `emp_children` tinyint(2) NOT NULL,
+  `emp_sho_id` tinyint(3) unsigned NOT NULL,
+  `emp_dep_id` tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (`emp_id`),
   KEY `emp_superior_id` (`emp_superior_id`),
   KEY `emp_pos_id` (`emp_pos_id`),
@@ -167,7 +167,7 @@ CREATE TABLE `employees` (
   CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`emp_pos_id`) REFERENCES `posts` (`pos_id`),
   CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`emp_sho_id`) REFERENCES `shops` (`sho_id`),
   CONSTRAINT `employees_ibfk_4` FOREIGN KEY (`emp_dep_id`) REFERENCES `departments` (`dep_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,19 +186,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders` (
-  `ord_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `ord_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ord_order_date` date NOT NULL,
   `ord_payment_date` date DEFAULT NULL,
   `ord_ship_date` date DEFAULT NULL,
   `ord_reception_date` date DEFAULT NULL,
-  `ord_status` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `ord_cus_id` int unsigned NOT NULL,
+  `ord_status` varchar(25) DEFAULT NULL,
+  `ord_cus_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ord_id`),
   KEY `ord_cus_id` (`ord_cus_id`) USING BTREE,
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`ord_cus_id`) REFERENCES `customers` (`cus_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,20 +217,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `orders_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `orders_details` (
-  `ode_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `ode_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ode_unit_price` decimal(7,2) NOT NULL,
   `ode_discount` decimal(4,2) DEFAULT NULL,
-  `ode_quantity` int NOT NULL,
-  `ode_ord_id` int unsigned NOT NULL,
-  `ode_pro_id` int unsigned NOT NULL,
+  `ode_quantity` int(5) NOT NULL,
+  `ode_ord_id` int(10) unsigned NOT NULL,
+  `ode_pro_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ode_id`),
   KEY `ode_ord_id` (`ode_ord_id`) USING BTREE,
   KEY `ode_pro_id` (`ode_pro_id`) USING BTREE,
   CONSTRAINT `orders_details_ibfk_1` FOREIGN KEY (`ode_ord_id`) REFERENCES `orders` (`ord_id`),
   CONSTRAINT `orders_details_ibfk_2` FOREIGN KEY (`ode_pro_id`) REFERENCES `products` (`pro_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,12 +249,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `pos_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `pos_libelle` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pos_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pos_libelle` varchar(50) NOT NULL,
   PRIMARY KEY (`pos_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,20 +273,20 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
-  `pro_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `pro_cat_id` int unsigned NOT NULL,
+  `pro_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pro_cat_id` int(10) unsigned NOT NULL,
   `pro_price` decimal(7,2) NOT NULL,
-  `pro_ref` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pro_ean` varchar(13) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `pro_stock` int unsigned NOT NULL,
-  `pro_stock_alert` int unsigned NOT NULL,
-  `pro_color` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pro_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pro_desc` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pro_ref` varchar(8) NOT NULL,
+  `pro_ean` varchar(13) DEFAULT NULL,
+  `pro_stock` int(5) unsigned NOT NULL,
+  `pro_stock_alert` int(5) unsigned NOT NULL,
+  `pro_color` varchar(30) NOT NULL,
+  `pro_name` varchar(50) NOT NULL,
+  `pro_desc` text NOT NULL,
   `pro_publish` tinyint(1) NOT NULL,
-  `pro_sup_id` int unsigned NOT NULL,
+  `pro_sup_id` int(10) unsigned NOT NULL,
   `pro_add_date` datetime NOT NULL,
   `pro_update_date` datetime DEFAULT NULL,
   `pro_picture` varchar(50) DEFAULT NULL,
@@ -295,7 +295,7 @@ CREATE TABLE `products` (
   KEY `pro_cat_id` (`pro_cat_id`) USING BTREE,
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`pro_sup_id`) REFERENCES `suppliers` (`sup_id`),
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`pro_cat_id`) REFERENCES `categories` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,15 +314,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `shops`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `shops` (
-  `sho_id` tinyint unsigned NOT NULL AUTO_INCREMENT,
+  `sho_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `sho_name` varchar(26) NOT NULL,
   `sho_address` varchar(100) NOT NULL,
   `sho_zipcode` varchar(5) NOT NULL,
   `sho_city` varchar(26) NOT NULL,
   PRIMARY KEY (`sho_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,21 +341,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `suppliers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `suppliers` (
-  `sup_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `sup_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sup_city` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sup_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sup_name` varchar(50) NOT NULL,
+  `sup_city` varchar(50) NOT NULL,
   `sup_countries_id` char(2) NOT NULL,
   `sup_address` varchar(150) NOT NULL,
-  `sup_zipcode` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sup_zipcode` varchar(5) NOT NULL,
   `sup_contact` varchar(100) NOT NULL,
-  `sup_phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sup_phone` varchar(10) NOT NULL,
   `sup_mail` varchar(75) NOT NULL,
   PRIMARY KEY (`sup_id`),
   KEY `sup_countries_id` (`sup_countries_id`),
   CONSTRAINT `suppliers_ibfk_1` FOREIGN KEY (`sup_countries_id`) REFERENCES `countries` (`cou_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,4 +377,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-17 11:04:58
+-- Dump completed on 2021-08-17 11:18:03
