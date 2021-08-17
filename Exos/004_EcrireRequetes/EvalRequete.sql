@@ -62,9 +62,12 @@ on pro_cat_id=cat_id
 -- Q10. Afficher l'organigramme du magasin de Compiègne Afficher le nom et 
 -- prénom des employés, classés par ordre alphabétique, ainsi que celui de leur supérieur 
 -- hiérarchique (et éventuellement leurs postes respectifs, si vous y parvenez).
-select concat(emp_firstname,' ',emp_lastname) as 'Employé', concat(emp_firstname,' ',emp_lastname) as 'Supérieur'
-from employees
-join employees
+select concat(e.emp_firstname,' ',e.emp_lastname) as 'Employé', concat(s.emp_firstname,' ',s.emp_lastname) as 'Supérieur'
+from  `employees` as e
+join `employees`  as s
+on e.emp_superior_id=s.emp_id
+where e.emp_sho_id=3
+order by e.emp_lastname asc
 
 
 
