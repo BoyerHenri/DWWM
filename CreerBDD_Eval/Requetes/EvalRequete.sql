@@ -94,5 +94,27 @@ where year(ord_order_date)=2020
 
 -- Q14. Afficher les coordonnées des fournisseurs pour lesquels des 
 -- commandes ont été passées.
+select sup_id as 'ID',sup_address as 'Adresse',pro_sup_id
+from suppliers
+join products
+on sup_id=pro_sup_id
+group by sup_id
 
+-- Q15. Quel est le chiffre d'affaires de 2020 ?
+ select concat(round(sum((ode_unit_price*ode_quantity)*(1-ode_discount/100)),2),'€') as 'CA annuel total remisé',year(ord_order_date) as 'Année'
+from orders_details
+join orders
+on ode_ord_id=ord_id
+where year(ord_order_date)=2020
+
+-- Q16. Lister le total de chaque commande par total décroissant. 
+-- Afficher le numéro de commande, la date, le total et le nom du client).
+select ord_id,cus_lastname,ord_order_date,ode_quantity,ROUND(SUM((ode_quantity*ode_unit_price)-((ode_quantity*ode_unit_price)*(ode_discount/100))),2) as 'Total'
+from customers
+join orders
+on cus_id=ord_cus_id
+join orders_details
+on ord_id=ode_ord_id
+group by ord_id
+order by Total desc
 
