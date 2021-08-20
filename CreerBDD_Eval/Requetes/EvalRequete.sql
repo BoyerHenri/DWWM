@@ -118,3 +118,43 @@ on ord_id=ode_ord_id
 group by ord_id
 order by Total desc
 
+-- Q16. Lister le total de chaque commande par total décroissant. Afficher le numéro de commande, 
+-- la date, le total et le nom du client).
+select ord_id,cus_lastname,ord,ord_order_date,ode_quantity,round(sum(ode_quantity*ode_unit_price-(ode_quantity*ode_unit_price)*(ode_discount/100)),2) as 'Total'
+from customers
+join orders
+on cus_id=ord_cus_id
+join orders_details
+on ord_id=ode_ord_id
+group by ord_id
+order by Total desc
+
+-- Q17. Quel est le montant du panier moyen ?
+select (round(sum(ode_quantity*ode_unit_price-(ode_quantity*ode_unit_price)*(ode_discount/100)),2)/count(distinct ode_order_id)) as 'Resultat' 
+from orders_details
+
+-- Q18. La version 2020 du produit barb004 s'appelle désormais Camper et, bonne nouvelle, 
+-- son prix subit une baisse de 10%. Mettre à jour la fiche de ce produit.
+update products
+set pro_name='camper',pro_price=(pro_price-(pro_price*(10/100)))
+where pro_ref='barb004'
+
+-- Q19. L'inflation en France l'année dernière a été de 1,1%. Appliquer cette augmentation à la gamme de parasols.
+update products
+join categories
+on cat_id=pro_cat_id
+set pro_price=(pro_price+(pro_price*(1.1/100)))
+where cat_name='Parasols'
+
+-- Q20. Supprimer les produits non vendus de la catégorie "Tondeuses électriques". 
+-- Vous devez utiliser une sous-requête sans indiquer de valeurs de clés.
+delete from products
+where pro_id not in(
+    select ode_pro_id from orders_details
+    )
+and pro_id in(
+    select pro_id from products
+    join categories
+    on pro_cat_id=cat_id
+    where cat_id=10
+    )
