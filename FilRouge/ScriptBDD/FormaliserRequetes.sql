@@ -30,3 +30,58 @@ ON pro_id=ordetails_id
 JOIN categories
 ON pro_id=cat_id
 WHERE cus_id=2
+
+-- Repartition du C.A. Hors Taxes par type de client
+-- Client partiuculer (coeff=20)
+SELECT cus_id AS 'Cli ID',CONCAT(cus_name,' ',cus_lastname) AS 'Client',cus_coef AS 'TVA appliquable',ROUND(SUM((ordetails_quantity*ordetails_unit_price)-(ordetails_quantity*ordetails_unit_price)*(ordetails_discount/100)),2) AS 'C.A. Ht'
+FROM customers
+JOIN orders
+ON cus_id=order_id
+JOIN orders_details
+ON order_id=ordetails_id
+WHERE cus_coef=20
+GROUP BY cus_id
+
+-- Client pro (coeff=20)
+SELECT cus_id AS 'Cli ID',CONCAT(cus_name,' ',cus_lastname) AS 'Client',cus_coef AS 'TVA appliquable',ROUND(SUM((ordetails_quantity*ordetails_unit_price)-(ordetails_quantity*ordetails_unit_price)*(ordetails_discount/100)),2) AS 'C.A. Ht'
+FROM customers
+JOIN orders
+ON cus_id=order_id
+JOIN orders_details
+ON order_id=ordetails_id
+WHERE cus_coef=10
+GROUP BY cus_id
+
+-- Afficher les commandes en cours de livraison
+-- (N'ayant pas peuplé de base avec une commande en livraison, j'ai modifié en dur la BDD pour
+-- avoir une order_recieve_date 0000-00-00 00:00:00)
+SELECT cus_name AS 'Nom', cus_lastname AS 'Prenom'
+FROM customers
+JOIN orders
+ON cus_id=order_id
+WHERE order_receive_date='0000-00-00 00:00:00' 
+
+-- Procedure stockée renvoyant le délai moyen entre la date de commande et la date de facturation
+DROP PROCEDURE IF EXISTS moyenne_comm;
+DELIMITER //
+    CREATE PROCEDURE moyenne_comm()
+    BEGIN
+        SELECT ROUND(ABS(AVG(DATEDIFF(order_order_date,order_paid_date))),0) AS 'Delai moyen comm/fact en jours'
+        FROM orders;
+    END //
+DELIMITER ;
+-- Lancement de la procédure
+CALL moyenne_comm();
+
+-- Creer une vue correspondant à la jointure Produits-Fournisseurs
+DROP VIEW IF EXISTS pro_fou;
+CREATE VIEW pro_fou
+AS
+SELECT CONCAT(sup_id,'->',sup_name,' ',sup_address,' ',sup_zipcode,' ',sup_city,' ',sup_country) AS 'Grossiste',CONCAT(sup_contact,' ',sup_mail,' ',sup_phone) AS 'Contact',
+CONCAT('   ',pro_id,'->',cat_name,' ',cat_sub_name) AS 'Produit',pro_short_lib AS 'Descr.',pro_long_lib AS 'Descr. Cat.',CONCAT(pro_stock,'/',pro_alertstock) AS 'Stock et stock d\'alerte'
+FROM suppliers
+JOIN products
+ON pro_id=sup_id
+JOIN categories
+ON pro_id=cat_id
+WHERE pro_sup_id=sup_id
