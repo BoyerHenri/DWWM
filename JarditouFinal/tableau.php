@@ -10,6 +10,11 @@
 	<title>Tableau</title>
 </head>
 <body>
+	<!-- Appel des fonctions de connection -->
+	<?php
+		include("assets/php/connexion_bdd.php");
+		//connexionBase();
+	?>
 	<div class="container"> <!--Container BOOTSTRAP pour la grille-->
 		<!--Logo Top-->
 		<div class="row align-items-center">
@@ -33,13 +38,13 @@
 					<div class="collapse navbar-collapse" id="collapsibleNavbar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="index.html">Accueil</a>
+								<a class="nav-link" href="index.php">Accueil</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="tableau.html">Tableau</a>
+								<a class="nav-link" href="tableau.php">Tableau</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="formulaire.html">Contact</a>
+								<a class="nav-link" href="formulaire.php">Contact</a>
 							</li>
 						</ul>
 					</div>
@@ -62,6 +67,70 @@
 		<!-- Elements centraux -->
 		<!-- Tableau des produits -->
 			<div class="table-responsive">
+
+				<?php echo "<table class='table table-striped table-hover table-active'>"; ?>
+				<thead class="thead-dark"> 
+					<tr>
+							<th><p class="font-weight-bold">Photo</p></th>
+							<th><p class="font-weight-bold">ID</p></th>
+							<th><p class="font-weight-bold">Réference</p></th>
+							<th><p class="font-weight-bold">Libellé</p></th>
+							<th><p class="font-weight-bold">Prix</p></th>
+							<th><p class="font-weight-bold">Stock</p></th>
+							<th><p class="font-weight-bold">Couleur</p></th>
+							<th><p class="font-weight-bold">Ajout</p></th>
+							<th><p class="font-weight-bold">Modif</p></th>
+							<th><p class="font-weight-bold">Bloqué</p></th>
+					</tr>
+				</thead>
+				<?php
+					//require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
+					$db = connexionBase(); // Appel de la fonction de connexion ( WHERE ISNULL(pro_bloque)  )
+					$requete = "SELECT pro_photo,pro_id,pro_ref,pro_libelle,pro_prix,pro_stock,pro_couleur,pro_d_ajout,pro_d_modif,pro_bloque FROM produits ORDER BY pro_d_ajout DESC";
+
+					$result = $db->query($requete);
+
+					if (!$result) 
+					{
+						$tableauErreurs = $db->errorInfo();
+						echo $tableauErreur[2]; 
+						die("Erreur dans la requête");
+					}
+
+					if ($result->rowCount() == 0) 
+					{
+					// Pas d'enregistrement
+					die("La table est vide");
+					}
+
+					
+
+					while ($row = $result->fetch(PDO::FETCH_OBJ))
+					{
+						echo"<tr>";
+						echo"<td>".$row->pro_photo."</td>";
+						echo"<td>".$row->pro_id."</td>";
+						echo"<td>".$row->pro_ref."</td>";
+						echo"<td>".$row->pro_libelle."</td>";
+						echo"<td>".$row->pro_prix."</td>";
+						echo"<td>".$row->pro_stock."</td>";
+						echo"<td>".$row->pro_couleur."</td>";
+						echo"<td>".$row->pro_d_ajout."</td>";
+						echo"<td>".$row->pro_d_modif."</td>";
+						if ($row->pro_bloque==1) {
+							echo "<td>OUI</td>";
+						}else{
+							// rIEN !
+						}
+						//echo"<td>".$row->pro_bloque."</td>";
+						echo"<td><a href=\"detail.php?id=".$row->pro_id."\" title=\"".$row->pro_libelle."\"></a></td>";
+						echo"</tr>";
+					}
+
+					echo "</table>"; 
+				?>
+
+				<!--
 				<table class="table table-striped table-hover table-active">
 					<thead class="thead-dark"> 
 						<tr>
@@ -116,6 +185,8 @@
 						</tr>
 					</tbody>
 				</table>
+				-->
+
 			</div>
 
 		<!-- Pied de page -->
