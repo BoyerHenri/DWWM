@@ -108,10 +108,12 @@
 					while ($row = $result->fetch(PDO::FETCH_OBJ))
 					{
 						echo"<tr>";
+
 						echo"<td>".$row->pro_photo."</td>";
 						echo"<td>".$row->pro_id."</td>";
 						echo"<td>".$row->pro_ref."</td>";
-						echo"<td>".$row->pro_libelle."</td>";
+						// echo"<td>".$row->pro_libelle."</td>";
+						echo"<td><a href=\"assets/php/detail.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a></td>";					
 						echo"<td>".$row->pro_prix."</td>";
 						echo"<td>".$row->pro_stock."</td>";
 						echo"<td>".$row->pro_couleur."</td>";
@@ -120,11 +122,12 @@
 						if ($row->pro_bloque==1) {
 							echo "<td>OUI</td>";
 						}else{
-							// rIEN !
+							echo "<td> </td>";
 						}
 						//echo"<td>".$row->pro_bloque."</td>";
-						echo"<td><a href=\"detail.php?id=".$row->pro_id."\" title=\"".$row->pro_libelle."\"></a></td>";
-						echo"</tr>";
+						// echo"<td><a href=\"detail.php?id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a></td>";
+						// echo "<td><a href=\detail.php?id=".$row->pro_id."\title=\".$row->pro_libelle."\</a></td>";
+						echo "</tr>";
 					}
 
 					echo "</table>"; 
