@@ -9,7 +9,7 @@
 	    <!--Integration de BOOTSTRAP-->  
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Tittle -->
-        <title>Atelier PHP N°4 - page de détail</title>
+        <title>Atelier PHP N°4 - Ajout données</title>
         <!-- Connection BDD -->
         <?php   
             require "connexion_bdd.php"; // Inclusion de notre bibliothèque de fonctions
@@ -53,52 +53,56 @@
                 </nav>
             </div>				
         </div>
-        
+
         <!-- Details produits -->
-        <form>
+        <form action="ajoutScript.php?pro_id=.$produit->pro_id" method="get">
             <div>
                 <!-- Details -->
                 <br>
                 <label for="ID" class="form-label">ID</label>
-                <input type="number" class="form-control" id="ID" placeholder="  <?php echo $produit->pro_id; ?>" disabled>
+                <input type="number" class="form-control" id="ID" placeholder="  <?php echo $produit->pro_id; ?>">
 
                 <br>
-                <label for="REF" class="form-label">Réference</label>
-                <input type="text" class="form-control" id="REF" placeholder="  <?php echo $produit->pro_ref; ?>" disabled>
+                <label for="CID" class="form-label">Cat. ID</label>
+                <input type="number" class="form-control" id="CID" placeholder="  <?php echo $produit->pro_cat_id; ?>">
                 
                 <br>
-                <label for="CAT" class="form-label">Catégorie</label>
-                <input type="text" class="form-control" id="CAT" placeholder="  <?php echo $produit->cat_nom; ?>" disabled>
+                <label for="REF" class="form-label">Ref.</label>
+                <input type="number" class="form-control" id="REF" placeholder="  <?php echo $produit->pro_ref; ?>">
 
                 <br>
-                <label for="LIB" class="form-label">Libellé</label>
-                <input type="text" class="form-control" id="LIB" placeholder="  <?php echo $produit->pro_libelle; ?>" disabled>
+                <label for="LIB" class="form-label">Libéllé</label>
+                <input type="text" class="form-control" id="LIB" name="LIB" placeholder="  <?php echo $produit->pro_libelle; ?>">
 
                 <br>
-                <label for="DES" class="form-label">Description</label>
-                <textarea class="form-control" id="DES" placeholder="  <?php echo $produit->pro_description; ?>" disabled></textarea>
-                
+                <label for="PDES" class="form-label">Description</label>
+                <textarea class="form-control" id="PDES" placeholder="  <?php echo $produit->pro_description; ?>"></textarea>
+
                 <br>
                 <label for="PRI" class="form-label">Prix</label>
-                <input type="number" class="form-control" id="PRI" placeholder="  <?php echo $produit->pro_prix; ?>" disabled>
-                
-                <br>
-                <label for="STO" class="form-label">Stock</label>
-                <input type="text" class="form-control" id="STO" placeholder="  <?php echo $produit->pro_stock; ?>" disabled>
+                <input type="number" class="form-control" id="PRI" placeholder="  <?php echo $produit->pro_prix; ?>">
 
                 <br>
-                <label for="COL" class="form-label">Couleur</label>
-                <input type="text" class="form-control" id="COL" placeholder="  <?php echo $produit->pro_couleur; ?>" disabled>
+                <label for="STO" class="form-label">Libellé</label>
+                <input type="text" class="form-control" id="STO" placeholder="  <?php echo $produit->pro_stock; ?>">
+
+                <br>
+                <label for="COU" class="form-label">Couleur</label>
+                <input type="text" class="form-control" id="COU" placeholder="  <?php echo $produit->pro_couleur; ?>">
+
+                <br>
+                <label for="PHO" class="form-label">Photo</label>
+                <input type="text" class="form-control" id="PHO" placeholder="  <?php echo $produit->pro_photo; ?>">
                 
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">
                     Produit bloqué : 
-                    <input class="form-check-input" type="radio" name="BLOCKED" id="OUI" value="OUI" <?php if($produit->pro_bloque==1) { echo "checked"; }?> value="OUI" disabled>
+                    <input class="form-check-input" type="radio" name="BLOCKED" id="OUI" value="OUI" <?php if($produit->pro_bloque==1) { echo "checked"; }?> value="OUI">
                     <label class="form-check-label" for="OUI">Oui</label>
-                <!--</div>
-                <div class="form-check form-check-inline"> -->
-                    <input class="form-check-input" type="radio" name="BLOCKED" id="NON" value="NON" <?php if($produit->pro_bloque!=1) { echo "checked"; }?> value="NON" disabled>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="BLOCKED" id="NON" value="NON" <?php if($produit->pro_bloque!=1) { echo "checked"; }?> value="NON">
                     <label class="form-check-label" for="NON">Non</label>
                 </div>
                 
@@ -106,16 +110,16 @@
                 <br>
                 Date d'ajout :<?php echo $produit->pro_d_ajout; ?>
                 <br>
-                Date de modication :<?php echo $produit->pro_d_modif; ?>
+                Date de modication :<?php echo date("Y-m-d h:m:s"); ?>
             <div>
-                <br>
-                <!-- Nav Buttons -->
-                <a href="../../tableau.php" class="btn btn-dark" tabindex="-1" role="button">Retour</a>
-                   <!-- <a href="../../produit_ajout.php" class="btn btn-dark" tabindex="-1" role="button">Modifier</a> -->
-                <?php
-                    // echo "<a href=\"assets/php/produit_ajout.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a>";					
-                    echo "<a href='produits_ajout.php?pro_id=".$produit->pro_id."' class='btn btn-dark' tabindex='-1' role='button'>Modifier</a>";              
-                ?>
+
+            <!-- Nav Buttons -->
+            <br>
+            <a href="../../tableau.php" class="btn btn-dark" tabindex="-1" role="button">Retour</a>
+            <?php
+                // Valide l'ajout dans la BDD
+                echo "<a href='ajoutScript.php?pro_id=".$produit->pro_id."' class='btn btn-dark' tabindex='-1' role='button'>Valider !</a>"; 
+            ?>
         </form>
         <!--JS Bootstrap-->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
