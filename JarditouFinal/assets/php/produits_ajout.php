@@ -22,6 +22,11 @@
             $result = $db->query($requete);
             // Renvoi de l'enregistrement sous forme d'un objet
             $produit = $result->fetch(PDO::FETCH_OBJ);
+            
+            // Categories
+            $requete_cat="SELECT * FROM categories";
+            $result_cat=$db->query($requete_cat);
+
         ?>
    </head>
 
@@ -61,11 +66,29 @@
                 <br>
                 <label for="ID" class="form-label">ID</label>
                 <input type="number" class="form-control" id="ID" name="ID" value="<?php echo $produit->pro_id; ?>" placeholder="<?php echo $produit->pro_id; ?>">
-
-                <br>
-                <label for="CID" class="form-label">Cat. ID</label>
-                <input type="number" class="form-control" id="CID" name="CID" value="<?php echo $produit->pro_cat_id; ?>" placeholder="<?php echo $produit->pro_cat_id; ?>">
                 
+                <br>
+                Categories
+                <br>
+                <?php                    
+                      echo '<select  class="dropdown-item btn-dark" size=1 name="CID">'."\n";
+                      //echo '<option value="-1">--Liste des titres--</option>'."\n";
+                      
+                      $id_categorie_list=$produit->cat_id;
+                      $nom_categorie_list=$produit->cat_nom;
+                      echo '<option value="'. $id_categorie_list.'">'.$id_categorie_list."  ".$nom_categorie_list.'</option>\n';   
+                      
+                      while($row=$result_cat->fetch(PDO::FETCH_OBJ))
+                      //for($lop=1;$lop<5;$lop++)
+                      { 
+                          $id_categorie_list=$row->cat_id;
+                          $nom_categorie_list=$row->cat_nom;
+                          echo '<option value="'. $id_categorie_list.'">'.$id_categorie_list."  ".$nom_categorie_list.'</option>\n';
+                      }
+                  echo '</select>'."\n";
+                ?>
+                <br>
+
                 <br>
                 <label for="REF" class="form-label">Ref.</label>
                 <input type="text" class="form-control" id="REF" name="REF" value="<?php echo $produit->pro_ref; ?>" placeholder="<?php echo $produit->pro_ref; ?>">
