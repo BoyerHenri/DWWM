@@ -54,45 +54,45 @@
             </div>				
         </div>
 
-        <!-- Details produits -->
-        <form action="ajoutScript.php?pro_id=.$produit->pro_id" method="get">
+        <!-- Details produits ?pro_id=.$produit->pro_id -->
+        <form action="ajoutScript.php" method="POST">
             <div>
                 <!-- Details -->
                 <br>
                 <label for="ID" class="form-label">ID</label>
-                <input type="number" class="form-control" id="ID" placeholder="  <?php echo $produit->pro_id; ?>">
+                <input type="number" class="form-control" id="ID" name="ID" value="<?php echo $produit->pro_id; ?>" placeholder="<?php echo $produit->pro_id; ?>">
 
                 <br>
                 <label for="CID" class="form-label">Cat. ID</label>
-                <input type="number" class="form-control" id="CID" placeholder="  <?php echo $produit->pro_cat_id; ?>">
+                <input type="number" class="form-control" id="CID" name="CID" value="<?php echo $produit->pro_cat_id; ?>" placeholder="<?php echo $produit->pro_cat_id; ?>">
                 
                 <br>
                 <label for="REF" class="form-label">Ref.</label>
-                <input type="number" class="form-control" id="REF" placeholder="  <?php echo $produit->pro_ref; ?>">
+                <input type="text" class="form-control" id="REF" name="REF" value="<?php echo $produit->pro_ref; ?>" placeholder="<?php echo $produit->pro_ref; ?>">
 
                 <br>
                 <label for="LIB" class="form-label">Libéllé</label>
-                <input type="text" class="form-control" id="LIB" name="LIB" placeholder="  <?php echo $produit->pro_libelle; ?>">
+                <input type="text" class="form-control" id="LIB" name="LIB" value="<?php echo $produit->pro_libelle; ?>" placeholder="<?php echo $produit->pro_libelle; ?>">
 
                 <br>
                 <label for="PDES" class="form-label">Description</label>
-                <textarea class="form-control" id="PDES" placeholder="  <?php echo $produit->pro_description; ?>"></textarea>
+                <textarea class="form-control" id="PDES" name="PDES" placeholder="<?php echo $produit->pro_description; ?>"></textarea>
 
                 <br>
                 <label for="PRI" class="form-label">Prix</label>
-                <input type="number" class="form-control" id="PRI" placeholder="  <?php echo $produit->pro_prix; ?>">
+                <input type="number" step="any" class="form-control" id="PRI" name="PRI" value="<?php echo $produit->pro_prix; ?>" placeholder="<?php echo $produit->pro_prix; ?>">
 
                 <br>
-                <label for="STO" class="form-label">Libellé</label>
-                <input type="text" class="form-control" id="STO" placeholder="  <?php echo $produit->pro_stock; ?>">
+                <label for="STO" class="form-label">Stock</label>
+                <input type="text" class="form-control" id="STO" name="STO" value="<?php echo $produit->pro_stock; ?>" placeholder="<?php echo $produit->pro_stock; ?>">
 
                 <br>
                 <label for="COU" class="form-label">Couleur</label>
-                <input type="text" class="form-control" id="COU" placeholder="  <?php echo $produit->pro_couleur; ?>">
+                <input type="text" class="form-control" id="COU" name="COU" value="<?php echo $produit->pro_couleur; ?>" placeholder="<?php echo $produit->pro_couleur; ?>">
 
                 <br>
                 <label for="PHO" class="form-label">Photo</label>
-                <input type="text" class="form-control" id="PHO" placeholder="  <?php echo $produit->pro_photo; ?>">
+                <input type="text" class="form-control" id="PHO" name="PHO" value="<?php echo $produit->pro_photo; ?>" placeholder="<?php echo $produit->pro_photo; ?>">
                 
                 <!-- Radio button disponibilité-->
                 <br>
@@ -110,16 +110,18 @@
                 <br>
                 Date d'ajout :<?php echo $produit->pro_d_ajout; ?>
                 <br>
-                Date de modication :<?php echo date("Y-m-d h:m:s"); ?>
-            <div>
+                Date de modication :<?php echo date("Y-m-d"); ?>
+           
 
             <!-- Nav Buttons -->
             <br>
             <a href="../../tableau.php" class="btn btn-dark" tabindex="-1" role="button">Retour</a>
+            <input class="btn btn-dark" type="submit" value="VALIDER !"> 
             <?php
                 // Valide l'ajout dans la BDD
-                echo "<a href='ajoutScript.php?pro_id=".$produit->pro_id."' class='btn btn-dark' tabindex='-1' role='button'>Valider !</a>"; 
+                // echo "<a href='ajoutScript.php?pro_id=".$produit->pro_id."' class='btn btn-dark' tabindex='-1' role='button'>Valider !</a>"; 
             ?>
+             </div>
         </form>
         <!--JS Bootstrap-->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

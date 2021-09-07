@@ -60,35 +60,35 @@
                 <!-- Details -->
                 <br>
                 <label for="ID" class="form-label">ID</label>
-                <input type="number" class="form-control" id="ID" placeholder="  <?php echo $produit->pro_id; ?>" disabled>
+                <input type="number" class="form-control" id="ID" name="ID" placeholder="<?php echo $produit->pro_id; ?>" disabled>
 
                 <br>
                 <label for="REF" class="form-label">Réference</label>
-                <input type="text" class="form-control" id="REF" placeholder="  <?php echo $produit->pro_ref; ?>" disabled>
+                <input type="text" class="form-control" id="REF" name="REF" placeholder="<?php echo $produit->pro_ref; ?>" disabled>
                 
                 <br>
                 <label for="CAT" class="form-label">Catégorie</label>
-                <input type="text" class="form-control" id="CAT" placeholder="  <?php echo $produit->cat_nom; ?>" disabled>
+                <input type="text" class="form-control" id="CAT" name="CAT" placeholder="<?php echo $produit->cat_nom; ?>" disabled>
 
                 <br>
                 <label for="LIB" class="form-label">Libellé</label>
-                <input type="text" class="form-control" id="LIB" placeholder="  <?php echo $produit->pro_libelle; ?>" disabled>
+                <input type="text" class="form-control" id="LIB" name="LIB" placeholder="<?php echo $produit->pro_libelle; ?>" disabled>
 
                 <br>
-                <label for="DES" class="form-label">Description</label>
-                <textarea class="form-control" id="DES" placeholder="  <?php echo $produit->pro_description; ?>" disabled></textarea>
+                <label for="PDES" class="form-label">Description</label>
+                <textarea class="form-control" id="PDES" name="PDES" placeholder="<?php echo $produit->pro_description; ?>" disabled></textarea>
                 
                 <br>
                 <label for="PRI" class="form-label">Prix</label>
-                <input type="number" class="form-control" id="PRI" placeholder="  <?php echo $produit->pro_prix; ?>" disabled>
+                <input type="number" class="form-control" id="PRI" name="PRI" placeholder="<?php echo $produit->pro_prix; ?>" disabled>
                 
                 <br>
                 <label for="STO" class="form-label">Stock</label>
-                <input type="text" class="form-control" id="STO" placeholder="  <?php echo $produit->pro_stock; ?>" disabled>
+                <input type="text" class="form-control" id="STO" name="STO" placeholder="<?php echo $produit->pro_stock; ?>" disabled>
 
                 <br>
-                <label for="COL" class="form-label">Couleur</label>
-                <input type="text" class="form-control" id="COL" placeholder="  <?php echo $produit->pro_couleur; ?>" disabled>
+                <label for="COU" class="form-label">Couleur</label>
+                <input type="text" class="form-control" id="COU" name="COU" placeholder="<?php echo $produit->pro_couleur; ?>" disabled>
                 
                 <!-- Radio button disponibilité-->
                 <br>
