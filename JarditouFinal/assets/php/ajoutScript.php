@@ -16,15 +16,7 @@
     $pro_blocked=$_POST["BLOCKED"];
 
     $pro_d_modif=date("Y-m-d");
-
-    //$requete=$requete." SET pro_d_modif=".date("Y-m-d h:m:s");
-    // $requete=$requete." WHERE pro_id=".$pro_id;
-    
-   
-    
-    
-    
-    
+ 
     // Affichage des données pour test
     echo "Données modifiées sur ".$pro_id."<br>";
     echo "Cat. ".$pro_cat_id."<br>";
@@ -73,10 +65,16 @@
     echo "<br><br>".$requete; // Affiche requete pour debugage
 
     // Lancement de la requete créee dans la variable
-    $result = $db->query($requete);
-    // Renvoi de l'enregistrement sous forme d'un objet
-    // Execution de la requéte
-    $produit = $result->fetch(PDO::FETCH_OBJ);
+    try {
+        $result = $db->query($requete);
+        // Renvoi de l'enregistrement sous forme d'un objet
+        // Execution de la requéte
+        $produit = $result->fetch(PDO::FETCH_OBJ);
+    } catch (Exception $e) {
+        echo '<br><br>Erreur : ' . $e->getMessage() . '<br>';
+        echo 'N° : ' . $e->getCode() . '<br>';
+        die('Connexion au serveur impossible.');
+    }
     // Fin d'ajout, redirection
     header("Location:../../tableau.php");
 ?>  

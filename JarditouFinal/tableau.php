@@ -133,63 +133,12 @@
 					echo "</table>"; 
 				?>
 
-				<!--
-				<table class="table table-striped table-hover table-active">
-					<thead class="thead-dark"> 
-						<tr>
-								<th><p class="font-weight-bold">Photo</p></th>
-								<th><p class="font-weight-bold">ID</p></th>
-								<th><p class="font-weight-bold">Catégorie</p></th>
-								<th><p class="font-weight-bold">Libellé</p></th>
-								<th><p class="font-weight-bold">Prix</p></th>
-								<th><p class="font-weight-bold">Couleur</p></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><img src="src/img/7.jpg" alt="Barbecues" title="Barbecues" class="img-fluid" width="180"></td>
-							<td>7</td>
-							<td>Barbecues</td>
-							<td>Aramis</td>
-							<td>110.00€</td>
-							<td>Brun</td>
-						</tr>
-						<tr>
-							<td><img src="src/img/8.jpg" alt="Barbecues" title="Barbecues" class="img-fluid" width="180"></td>
-							<td>8</td>
-							<td>Barbecues</td>
-							<td>Athos</td>
-							<td>249.99€</td>
-							<td>Noir</td>
-						</tr>
-						<tr>
-							<td><img src="src/img/11.jpg" alt="Barbecues" title="Barbecues" class="img-fluid" width="180"></td>
-							<td>11</td>
-							<td>Barbecues</td>
-							<td>Clatronic</td>
-							<td>135.90€</td>
-							<td>Chrome</td>
-						</tr>
-						<tr>
-							<td><img src="src/img/12.jpg" alt="Barbecues" title="Barbecues" class="img-fluid" width="180"></td>
-							<td>12</td>
-							<td>Barbecues</td>
-							<td>Camping</td>
-							<td>88.00€</td>
-							<td>Noir</td>
-						</tr>
-						<tr>
-							<td><img src="src/img/13.jpg" alt="Brouette" title="Brouette"  class="img-fluid" width="180" ></td>
-							<td>13</td>
-							<td>Brouette</td>
-							<td>Green</td>
-							<td>49.00€</td>
-							<td>Verte</td>
-						</tr>
-					</tbody>
-				</table>
-				-->
-
+				<!-- Rajouter article -->
+				<button type="button" class="btn btn-success">
+					<a class="nav-link" href="AjouterArticle.php">Ajouter article</a>
+				</button>
+				<br>
+				<br>
 			</div>
 
 		<!-- Pied de page -->
