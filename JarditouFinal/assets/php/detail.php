@@ -108,18 +108,26 @@
                 <br>
                 Date de modication :<?php echo $produit->pro_d_modif; ?>
             <div>
-                <br>
-                <!-- Nav Buttons -->
-                <a href="../../tableau.php" class="btn btn-dark" tabindex="-1" role="button">Retour</a>
-                   <!-- <a href="../../produit_ajout.php" class="btn btn-dark" tabindex="-1" role="button">Modifier</a> -->
-                <?php
-                    // echo "<a href=\"assets/php/produit_ajout.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a>";					
-                    echo "<a href='produits_ajout.php?pro_id=".$produit->pro_id."' class='btn btn-dark' tabindex='-1' role='button'>Modifier</a>";              
-                ?>
+            <br>
+            <!-- Nav Buttons -->
+            <a href="../../tableau.php" class="btn btn-dark" tabindex="-1" role="button">Retour</a>
+                <!-- <a href="../../produit_ajout.php" class="btn btn-dark" tabindex="-1" role="button">Modifier</a> -->
+            <?php
+                // echo "<a href=\"assets/php/produit_ajout.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a>";					
+                echo "<a href='produits_ajout.php?pro_id=".$produit->pro_id."' class='btn btn-dark mr-1' tabindex='1' role='button'>Modifier</a>"; // Modification
+                // echo "input type='button' value='Changer la couleur de fond'."' class='btn btn-danger btn-sm' tabindex='1' role='button' onClick='ConfirmMessage()'>; // Delete
+            ?>
+            <!-- Passage d'une variable dans un champ HIDDEN ... -->
+            <input type="hidden" id="varMigrant" value="<?php echo $produit->pro_id; ?>">
+            <!-- ... afin de la récuperer dans le JS -->
+            <input type='button' class='btn btn-danger btn-sm' value='SUPPRIMER PRODUIT' onClick='ConfirmMessage()'>
         </form>
         <!--JS Bootstrap-->
 	    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>	
+        <!-- Boite de confirmation -->
+        <!-- JS Validation de formulaire -->
+	    <script src="../js/confirm.js"></script>
    </body>
  </html>
