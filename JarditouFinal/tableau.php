@@ -109,7 +109,9 @@
 					{
 						echo"<tr>";
 
-						echo"<td>".$row->pro_photo."</td>";
+						// echo"<td>".$row->pro_photo."</td>"; // Affichage extension
+						// Affichage image
+						echo"<td><img src='src/img/".$row->pro_id.".".$row->pro_photo."' width='80 px' </td>";
 						echo"<td>".$row->pro_id."</td>";
 						echo"<td>".$row->pro_ref."</td>";
 						// echo"<td>".$row->pro_libelle."</td>";

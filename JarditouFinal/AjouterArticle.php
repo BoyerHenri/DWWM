@@ -69,7 +69,7 @@
         </div>
 
         <!-- Details produits ?pro_id=.$produit->pro_id -->
-        <form action="assets/php/ArticleAdd.php" method="POST">
+        <form action="assets/php/ArticleAdd.php" method="POST" enctype="multipart/form-data">
             <div>
                 <!-- Details -->
                 <br>
@@ -119,11 +119,16 @@
                 <br>
                 <label for="COU" class="form-label">Couleur</label>
                 <input type="text" class="form-control" id="COU" name="COU" placeholder="Couleur de l'article [varchar(30)]">
-
+                
+                <!-- Photo (extension)
                 <br>
                 <label for="PHO" class="form-label">Photo</label>
                 <input type="text" class="form-control" id="PHO" name="PHO" placeholder="Extension fichier image [varchar(4)]">
-                
+                -->
+                <br>
+                <label for="FILE" class="form-label">Fichier Photo</label>
+                <input type="file" name="FILE"> 
+
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">
