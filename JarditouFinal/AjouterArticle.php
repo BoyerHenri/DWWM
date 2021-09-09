@@ -127,8 +127,11 @@
                 -->
                 <br>
                 <label for="FILE" class="form-label">Fichier Photo</label>
-                <input type="file" name="FILE"> 
-
+                <br>
+                <input type="file" class="btn btn-dark"  name="FILE"> 
+                <br>
+                <br> 
+                
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">

@@ -82,7 +82,32 @@
         echo 'N° : ' . $e->getCode() . '<br>';
         die('Connexion au serveur impossible.');
     }
-    // Fin d'ajout, redirection
+
+    // Ajout de la photo
+    // var_dump($_FILES); // Recupere le fichier
+    // Verification et enregistrement de l'image
+    // On met les types autorisés dans un tableau (ici pour une image)
+    $aMimeTypes = array("image/jpg", "image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
+
+    // On extrait le type du fichier via l'extension FILE_INFO 
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimetype = finfo_file($finfo, $_FILES["fichier"]["tmp_name"]);
+    finfo_close($finfo);
+
+    if (in_array($mimetype, $aMimeTypes))
+    {
+        /* Le type est parmi ceux autorisés, donc OK, on va pouvoir 
+        déplacer et renommer le fichier */
+
+    } 
+    else 
+    {
+    // Le type n'est pas autorisé, donc ERREUR
+
+    echo "<br>Type de fichier non autorisé";    
+    exit;
+    }   
+        // Fin d'ajout, redirection
     header("Location:../../tableau.php");
 
 ?>  

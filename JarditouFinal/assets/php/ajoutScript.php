@@ -74,7 +74,7 @@
         echo '<br><br>Erreur : ' . $e->getMessage() . '<br>';
         echo 'N° : ' . $e->getCode() . '<br>';
         die('Connexion au serveur impossible.');
-    }
+    }    
     // Fin d'ajout, redirection
     header("Location:../../tableau.php");
 ?>  
