@@ -125,13 +125,14 @@
                 <label for="PHO" class="form-label">Photo</label>
                 <input type="text" class="form-control" id="PHO" name="PHO" placeholder="Extension fichier image [varchar(4)]">
                 -->
+
                 <br>
                 <label for="FILE" class="form-label">Fichier Photo</label>
                 <br>
                 <input type="file" class="btn btn-dark"  name="FILE"> 
                 <br>
                 <br> 
-                
+
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">
