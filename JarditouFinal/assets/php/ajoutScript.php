@@ -74,7 +74,37 @@
         echo '<br><br>Erreur : ' . $e->getMessage() . '<br>';
         echo 'N° : ' . $e->getCode() . '<br>';
         die('Connexion au serveur impossible.');
-    }    
+    }  
+    
+     // Ajout de la photo
+     var_dump($_FILES); // Recupere le fichier
+     echo $_FILES['FILE']['name']; /* nom du fichier */
+     // Verification et enregistrement de l'image
+     // On met les types autorisés dans un tableau (ici pour une image)
+     $aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
+ 
+     // On extrait le type du fichier via l'extension FILE_INFO 
+     
+     $finfo = finfo_open(FILEINFO_MIME_TYPE);
+     $mimetype = finfo_file($finfo, $_FILES["FILE"]["tmp_name"]);
+     finfo_close($finfo);
+     if (in_array($mimetype, $aMimeTypes))
+     {
+         // Le type est parmi ceux autorisés, donc OK, on va pouvoir 
+         // déplacer et renommer le fichier 
+         $extension = substr(strrchr($_FILES["FILE"]["name"], "."), 1);
+         $name_fic=$pro_id.".".$extension;
+         move_uploaded_file($_FILES["FILE"]["tmp_name"], "/home/hbg/Documents/DepotsLocaux/DWWM/JarditouFinal/src/img/".$name_fic);    
+         //$extension = substr(strrchr($_FILES["FILE"]["name"], "."), 1);
+         echo "<br><br> >>".$name_fic;
+     } 
+     else 
+     {
+     // Le type n'est pas autorisé, donc ERREUR
+         echo "<br>Type de fichier non autorisé";    
+     exit;
+     }
+
     // Fin d'ajout, redirection
     header("Location:../../tableau.php");
 ?>  

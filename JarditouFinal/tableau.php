@@ -107,11 +107,12 @@
 
 					while ($row = $result->fetch(PDO::FETCH_OBJ))
 					{
-						echo"<tr>";
-
-						// echo"<td>".$row->pro_photo."</td>"; // Affichage extension
+						echo"<tr>"; 
+						// Recupere extension
+						$ext=$row->pro_photo;
+						echo $ext;
 						// Affichage image
-						echo"<td><img src='src/img/".$row->pro_id.".".$row->pro_photo."' width='80 px' </td>";
+						echo"<td><img src='src/img/".$row->pro_id.".".$ext."' width='80 px' </td>";
 						echo"<td>".$row->pro_id."</td>";
 						echo"<td>".$row->pro_ref."</td>";
 						// echo"<td>".$row->pro_libelle."</td>";

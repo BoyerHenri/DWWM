@@ -120,28 +120,28 @@
                 <label for="COU" class="form-label">Couleur</label>
                 <input type="text" class="form-control" id="COU" name="COU" placeholder="Couleur de l'article [varchar(30)]">
                 
-                <!-- Photo (extension)
+                
                 <br>
                 <label for="PHO" class="form-label">Photo</label>
                 <input type="text" class="form-control" id="PHO" name="PHO" placeholder="Extension fichier image [varchar(4)]">
-                -->
-
+            
+                <!-- Photo (extension)
                 <br>
                 <label for="FILE" class="form-label">Fichier Photo</label>
                 <br>
                 <input type="file" class="btn btn-dark"  name="FILE"> 
                 <br>
                 <br> 
-
+                -->
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">
                     Produit bloqué : 
-                    <input class="form-check-input" type="radio" name="BLOCKED" id="OUI" value="OUI" checked>
+                    <input class="form-check-input" type="radio" name="BLOCKED" id="OUI" value="OUI">
                     <label class="form-check-label" for="OUI">Oui</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="BLOCKED" id="NON" value="NON">
+                    <input class="form-check-input" type="radio" name="BLOCKED" id="NON" value="NON" checked>
                     <label class="form-check-label" for="NON">Non</label>
                 </div>
                 

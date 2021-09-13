@@ -60,7 +60,7 @@
         </div>
 
         <!-- Details produits ?pro_id=.$produit->pro_id -->
-        <form action="ajoutScript.php" method="POST">
+        <form action="ajoutScript.php" method="POST" enctype="multipart/form-data">
             <div>
                 <!-- Details -->
                 <br>
@@ -112,11 +112,19 @@
                 <br>
                 <label for="COU" class="form-label">Couleur</label>
                 <input type="text" class="form-control" id="COU" name="COU" value="<?php echo $produit->pro_couleur; ?>" placeholder="<?php echo $produit->pro_couleur; ?>">
+                   
+                <br>
+                <label for="FILE" class="form-label">Fichier Photo</label>
+                <br>
+                <input type="file" class="btn btn-dark"  name="FILE"> 
+                <br>
+                <br> 
 
                 <br>
-                <label for="PHO" class="form-label">Photo</label>
+                <label for="PHO" class="form-label">Type d'image (jpg, png, tiff ...)</label>
                 <input type="text" class="form-control" id="PHO" name="PHO" value="<?php echo $produit->pro_photo; ?>" placeholder="<?php echo $produit->pro_photo; ?>">
-                
+               
+
                 <!-- Radio button disponibilité-->
                 <br>
                 <div class="form-check form-check-inline mr-10">
