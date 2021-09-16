@@ -10,6 +10,10 @@
     <title>Jarditou</title>
 </head>
 <body>
+	<?php
+		include("assets/php/connexion_bdd.php");
+		$db=connexionBase();
+	?>
 	<div class="container"> <!--Container BOOTSTRAP pour la grille-->
 		<!--Logo Top-->
 		<div class="row align-items-center">
@@ -41,9 +45,6 @@
 							<li class="nav-item">
 								<a class="nav-link" href="formulaire.php">Contact</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="espace_client.php">Espace client</a>
-							</li>
 						</ul>
 					</div>
 					<!--Recherche-->
@@ -65,23 +66,11 @@
 		<!-- Elements centraux-->
 		<div class="row shadow m-0">
 			<!--Infos-->
-			<div class="col-12 col-md-6 col-lg-8">
+			<div class="col-12 col-md-6 col-lg-8" style="text-align: center;">
 				<section>
-					<h4>L'entreprise</h4>
-					<article>						
-						Notre entreprise familiale met tout son savoir-faire à votre disposition dans le domaine du jardin et du paysagisme.<br>
-						Créée il y a 70 ans, notre entreprise vend fleurs, arbustes, matériel à main et motorisés.<br>
-						Implantés à Amiens, nous intervenons dans tout le département de la Somme : Albert, Doullens, Péronne, Abbeville, Corbie<br>
-					</article>
-					<article>
-						<h4>Qualité</h4>
-						Nous mettons à votre disposition un service personnalisé, avec 1 seul interlocuteur durant tout votre projet.<br>
-						Vous serez séduit par notre expertise, nos compétences et notre sérieux.<br>
-					</article>
-					<article>
-						<h4>Devis gratuit</h4>
-						Vous pouvez bien sûr contacter pour de plus amples informations ou pour une demande d’intervention. Vous souhaitez un devis ? Nous vous le réalisons gratuitement.<br>
-					</article>
+					<?php
+						include("connect.php");
+					?>
 				</section>
 			</div>
 			<!--Colonne de droite-->			

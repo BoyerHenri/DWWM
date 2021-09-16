@@ -22,7 +22,7 @@
 				<img src="src/img/jarditou_logo.jpg" alt="Logo JARDITOU" title="Logo JARDITOU" class="img-fluid" width="180">
 			</div>
 			<div class="col-12 col-md-6 col-lg-4 d-none d-lg-block text-right">
-				<h1>Tout le jardin</h1>
+				<h1>ESPACE ADMIN</h1>
 			</div>
 		</div>
 		<!--Nav Bar-->
@@ -38,23 +38,27 @@
 					<div class="collapse navbar-collapse" id="collapsibleNavbar">
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<a class="nav-link" href="index.php">Accueil</a>
+								<!-- <a class="nav-link" href="tableau.php">RETOUR</a> -->
+								<button type="button" class="btn btn-warning">
+									<a class="nav-link" href="tableau.php">RETOUR</a>
+								</button>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="tableau.php">Tableau</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="formulaire.php">Contact</a>
+								<!-- Rajouter article ESPACE ADMIN -->
+								<button type="button" class="btn btn-success">
+									<a class="nav-link" href="AjouterArticle.php">Ajouter article</a>
+								</button>
 							</li>
 						</ul>
 					</div>
-					<!--Recherche-->
+					<!--Recherche
 					<div class="col d-none d-lg-block">							
 						<form class="form-inline float-right">
 							<input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
 							<button class="btn btn-outline-success" type="submit">Votre promotion</button>
 						</form>
-					</div>        
+					</div>
+					-->   
 				</nav>
 			</div>				
 		</div>
@@ -66,10 +70,10 @@
 		</div>	
 		<!-- Elements centraux -->
 		<!-- Tableau des produits -->
-			<div class="table-responsive">
+			<div class="table-responsive table-warning">
 
-				<?php echo "<table class='table table-striped table-hover table-active'>"; ?>
-				<thead class="thead-dark"> 
+				<?php echo "<table class='table table-striped table-hover table-active table-warning'>"; ?>
+				<thead class="thead-light"> 
 					<tr>
 							<th><p class="font-weight-bold">Photo</p></th>
 							<th><p class="font-weight-bold">ID</p></th>
@@ -108,7 +112,7 @@
 					while ($row = $result->fetch(PDO::FETCH_OBJ))
 					{
 						echo"<tr>"; 
-						// Recupere extension (Debug)
+						// Recupere extension (DEBUG)
 						$ext=$row->pro_photo;
 						// echo $ext;
 						// Affichage image
@@ -116,14 +120,14 @@
 						echo"<td>".$row->pro_id."</td>";
 						echo"<td>".$row->pro_ref."</td>";
 						// echo"<td>".$row->pro_libelle."</td>";
-						echo"<td><a href=\"assets/php/details_clients.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a></td>";					
+						echo"<td><button type='button' class='btn btn-danger'><a href=\"assets/php/detail.php?pro_id=".$row->pro_id."\" title=\"".$row->pro_libelle."\">".$row->pro_libelle."</a></button></td>";					
 						echo"<td>".$row->pro_prix."</td>";
 						echo"<td>".$row->pro_stock."</td>";
 						echo"<td>".$row->pro_couleur."</td>";
 						echo"<td>".$row->pro_d_ajout."</td>";
 						echo"<td>".$row->pro_d_modif."</td>";
 						if ($row->pro_bloque==1) {
-							echo "<td>n/d</td>";
+							echo "<td>OUI</td>";
 						}else{
 							echo "<td> </td>";
 						}
@@ -135,15 +139,6 @@
 
 					echo "</table>"; 
 				?>
-
-				<!-- 
-				Rajouter article ESPACE ADMIN 
-				<button type="button" class="btn btn-success">
-					<a class="nav-link" href="AjouterArticle.php">Ajouter article</a>
-				</button>
-				<br>
-				<br>
-				-->
 			</div>
 
 		<!-- Pied de page -->
@@ -165,9 +160,6 @@
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="#">plan du site</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link list-group-item-dark" style="color:#080000" href="tableau_Admin.php">Espace pro</a>
 								</li>
 							</ul>
 						</div>
