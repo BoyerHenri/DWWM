@@ -10,7 +10,7 @@ CREATE TABLE users(
    users_prename VARCHAR(50) NOT NULL,
    users_mail VARCHAR(50) NOT NULL,
    users_login VARCHAR(50) NOT NULL,
-   users_mdp VARCHAR(50) NOT NULL,
+   users_mdp VARCHAR(255) NOT NULL,
    users_dateAjout DATE,
    users_dateModif DATE,
    -- Declaration des cles primaires
