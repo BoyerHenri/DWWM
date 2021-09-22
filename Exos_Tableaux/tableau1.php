@@ -100,24 +100,18 @@
     affCapitale();
     // Entracte
     echo "<br><br>";
+    // Exo 2, suite
     $l="B";
-    /*
-    //unset($capitales[])
-    $key=in_array($l,$capitales);
-    $a=array_column($capitales,$l);
-    echo "fgjfjhf ".$a;
-
-    if($key=true){
-        echo ">".$key;
-        unset($capitales[$key]);
-    }
-    */
-
+    
+    // Parcoure la table et recherche du premier caractere...
+    // Supptime toute entrée ne commençant pas par $l :)
     foreach($capitales as $cle=>$valeur) {
-        $position=strpos($valeur,$l);
-        echo $cle." ".$valeur." ".$position."<br>";
-        if ($position<1){
-           unset($capitales[$valeur]);
+        $fcarac=substr($cle,0,1);
+        if ($fcarac==$l){
+           // echo "<b>".$cle." ".$valeur."</b> "."<br>";
+        } else{
+           // echo $cle.$valeur.""."<br>";
+           unset($capitales[$cle]);
         }
     }
 
