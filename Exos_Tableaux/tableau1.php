@@ -1,3 +1,8 @@
+<style>
+    table {
+        text-align: center;
+    }
+</style>
 <?php
     // ---------------------------------------
     // 1. Mois de l'année non bissextile
@@ -146,21 +151,23 @@
         global $departements;  
         //
         echo "<table border=6>";
-            echo "<thead>";
+            echo "<thead bgcolor='grey'>";
                 echo "<tr>";
                     echo "<th>DEPARTEMENTS</th>";
-                    echo "<th colspan='10'>VILLES</th>";
+                    echo "<th>NB REGIONS</th>";
+                    echo "<th colspan='10'>REGIONS</th>";
                 echo "</tr>";
             echo "</thead>";
             echo "<tbody>";                
                     foreach($departements as $cle=>$valeur) {
                         echo "<tr>";
                             echo "<td>".$cle."</td>";
+                            // Nb Villes
                             $nb_ville=count($valeur);
+                            echo "<td bgcolor='gainsboro'>".$nb_ville."</td>";
                             foreach($valeur as $valeur_sst) {
                                 echo "<td>".$valeur_sst."</td>";
-                            }
-                            echo "<td>Nb villes : ".$nb_ville."</td>";
+                            }                           
                         echo "</tr>";
                     }
             echo "</tbody>";
@@ -172,11 +179,11 @@
         $nb_pays=count($capitales);
         //
         echo "<table border=6>";
-            echo "<thead>";
+            echo "<thead bgcolor='grey'>";
                 echo "<tr>";
                     echo "<th colspan='2'>Nb Pays ".$nb_pays." </th>";
                 echo "</tr>";
-                echo "<tr>";
+                echo "<tr bgcolor='gainsboro'>";
                     echo "<th>CAPITALES</th>";
                     echo "<th>PAYS</th>";
                 echo "</tr>";
@@ -196,7 +203,7 @@
         global $mois;  
         //
         echo "<table border=6>";
-            echo "<thead>";
+            echo "<thead bgcolor='grey'>";
                 echo "<tr>";
                     echo "<th>MOIS</th>";
                     echo "<th>JOURS</th>";
