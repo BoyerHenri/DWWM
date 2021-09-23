@@ -1,6 +1,7 @@
 <?php
-    // Exercices
+    // ---------------------------------------
     // 1. Mois de l'année non bissextile
+    // ---------------------------------------
     echo "<b>EX 1</b> <br>";
     $mois=array (
         "Janvier"=>31,
@@ -28,7 +29,9 @@
     affMois();
      // Entracte
      echo "<br><br>";
+    // ---------------------------------------
     // 2. Capitales
+    // ---------------------------------------
     echo "<b>EX 2</b> <br>";
     $capitales = array(
         "Bucarest" => "Roumanie",
@@ -115,15 +118,55 @@
         }
     }
 
-
-
     ksort($capitales);
     echo "Suppression du tableau de toutes les capitales ne commençant pas par la lettre 'B'<br>";
     affCapitale();
 
+    // Entracte
+    echo "<br><br>";
+
+    // ---------------------------------------
+    // 3. Départements
+    // ---------------------------------------
+    echo "Departements...<br>";
+    $departements = array(
+        "Hauts-de-france" => array("Aisne", "Nord", "Oise", "Pas-de-Calais", "Somme"),
+        "Bretagne" => array("Côtes d'Armor", "Finistère", "Ille-et-Vilaine", "Morbihan"),
+        "Grand-Est" => array("Ardennes", "Aube", "Marne", "Haute-Marne", "Meurthe-et-Moselle", "Meuse", "Moselle", "Bas-Rhin", "Haut-Rhin", "Vosges"),
+        "Normandie" => array("Calvados", "Eure", "Manche", "Orne", "Seine-Maritime")
+    );
+    //
+    ksort($departements);
+    affDept();
+
     // ***********
     // *Fonctions*
     // ***********
+    function affDept(){
+        global $departements;  
+        //
+        echo "<table border=6>";
+            echo "<thead>";
+                echo "<tr>";
+                    echo "<th>DEPARTEMENTS</th>";
+                    echo "<th colspan='10'>VILLES</th>";
+                echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";                
+                    foreach($departements as $cle=>$valeur) {
+                        echo "<tr>";
+                            echo "<td>".$cle."</td>";
+                            $nb_ville=count($valeur);
+                            foreach($valeur as $valeur_sst) {
+                                echo "<td>".$valeur_sst."</td>";
+                            }
+                            echo "<td>Nb villes : ".$nb_ville."</td>";
+                        echo "</tr>";
+                    }
+            echo "</tbody>";
+        echo "</table>";
+    }
+
     function affCapitale(){
         global $capitales;  
         $nb_pays=count($capitales);
@@ -148,6 +191,7 @@
             echo "</tbody>";
         echo "</table>";
     }
+
     function affMois(){
         global $mois;  
         //
