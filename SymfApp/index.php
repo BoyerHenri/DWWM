@@ -67,16 +67,37 @@
     ];
     //
     echo "<br>";
-    // $var = [IF] ? [THEN] : [ELSE];
-    affProd($capitales);
+    // NB $produit=$capitales ! (lecture symfony book) 
+    prod();
+    echo "<br>--------------------------------------------$r entrées !------------------------------------------------------<br>";
+    $r=affProd($capitales);
+    echo "<br>--------------------------------------------$r entrées !------------------------------------------------------<br>";
+    prod();
+    echo "<br>--------------------------------------------$r entrées !------------------------------------------------------<br>";
+    $r=affProd($capitales);
+    echo "<br>--------------------------------------------$r entrées !------------------------------------------------------<br>";
+    //
+    
+    function prod($capitales=["msg"=>"Aucun pays selectionné !"]){
+        foreach ($capitales as $key=>$valeur) {
+            //echo ($key=="Paris")?($valeur)?"XXX":"":$key.:".$valeur."<br>";
+            if ($key=="msg"){
+                $c=count($capitales);
+                echo "$c $key $valeur";
+            }
+        }
+    }
+    
     //
     function affProd($capitales) {
         foreach ($capitales as $key=>$valeur){
-            echo "<br>X</br>";
+                echo "<pre>$valeur     ".$key."</br></pre>";
             if ($key=="Paris"){
-                echo "<br>$valeur</br>";
-
+                echo "<b>$valeur     ".$key."</br></b>";
             }
         }
+        //
+        $nbe=count($capitales);
+        return $nbe;
     }
 ?>
