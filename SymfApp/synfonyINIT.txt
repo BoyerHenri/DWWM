@@ -1,0 +1,18 @@
+SYMFONY REQUIERES
+-----------------------------------------------------------------------------------------------------------------
+Version récente de symfony (avec php 7.4) ...
+-> sudo apt install composer
+Aller sur le site Synfony-> Linux (copier coller wget (.....) )
+				    -> Copier coller le sudo mv... etc (en gbl la dernière option)
+!!! -> Avoir une base de donée installée
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+1-       composer create-project symfony/website-skeleton monProjet v4.4.*
+
+2-       composer require symfony/web-server-bundle
+2a-     composer require server --dev
+
+3-       php bin/console server:run
+3a-     symfony server:start
