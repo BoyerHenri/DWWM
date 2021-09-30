@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- {{ dump(obj) }} -->
+    <div class="col-sm-8 offset-sm-2">
+        <h1>Affichage BDD</h1>
+        <!-- Tableau BDD -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id Produit</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Id Fournisseur</th>
+                    <th scope="col">ID Catégorie</th>
+                    <th scope="col">Quantité par unité</th>
+                    <th scope="col">Prix Unitaire</th>
+                    <th scope="col">Unités en stock</th>
+                    <th scope="col">Unités en commande</th>
+                    <th scope="col">Niveau d'alerte</th>
+                    <th scope="col">Discontinued</th>
+                </tr>
+            </thead>
+            <tbody>
+                 {% for obj in obj%}
+                  
+                    <tr>
+                        <td scope="row">{{ obj.id }}</td>
+                        <td>{{ obj.name }}</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                 {% endfor %}
+            </tbody>
+        <table>
+    </div>
+{% endblock %}

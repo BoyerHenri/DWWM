@@ -12,7 +12,7 @@ USE ArcheryAmiens;
 -- *Tables*
 -- ********
 
-CREATE TABLE suppliers(
+CREATE TABLE suppliers(                                                                      --
    sup_id INT(10) NOT NULL AUTO_INCREMENT,
    sup_type CHAR(5), -- CONST ou IMPOR
    sup_name VARCHAR(50) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE suppliers(
    PRIMARY KEY(sup_id)
 );
 
-CREATE TABLE categories(
+CREATE TABLE categories(                                                                     --
    cat_id INT(10) NOT NULL AUTO_INCREMENT,
    cat_name VARCHAR(30) NOT NULL,
    cat_sub_id SMALLINT, -- Sous catégorie
@@ -34,7 +34,7 @@ CREATE TABLE categories(
    PRIMARY KEY(cat_id)
 );
 
-CREATE TABLE customers(
+CREATE TABLE customers(                                                                      --
    cus_id INT(10) NOT NULL AUTO_INCREMENT,
    cus_coef DECIMAL(4,2), -- Coefficient en fonction de la catégorie du client (pro ou particulier)
    cus_name VARCHAR(50) NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE customers(
    UNIQUE(cus_login)
 );
 
-CREATE TABLE orders(
+CREATE TABLE orders( 										--
    order_id INT(10) NOT NULL AUTO_INCREMENT,
    order_order_date DATETIME,
    order_paid_date DATETIME,
@@ -66,7 +66,7 @@ CREATE TABLE orders(
    FOREIGN KEY(cus_id) REFERENCES customers(cus_id)
 );
 
-CREATE TABLE products(
+CREATE TABLE products(										--
    pro_id INT(10) NOT NULL AUTO_INCREMENT,
    pro_short_lib VARCHAR(25), -- Libellé court
    pro_long_lib VARCHAR(50), -- lib long (description)
@@ -82,7 +82,7 @@ CREATE TABLE products(
    FOREIGN KEY(sup_id) REFERENCES suppliers(sup_id)
 );
 
-CREATE TABLE orders_details(
+CREATE TABLE orders_details(									--
    ordetails_id INT(10) NOT NULL AUTO_INCREMENT,
    ordetails_quantity SMALLINT,
    ordetails_unit_price DECIMAL(6,2),
