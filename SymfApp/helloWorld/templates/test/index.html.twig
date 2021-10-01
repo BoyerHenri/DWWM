@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- {{ dump(obj) }} -->
+     {#{ dump(obj) }#}
     <div class="col-sm-8 offset-sm-2">
         <h1>Affichage BDD</h1>
         <!-- Tableau BDD -->
@@ -21,13 +21,19 @@
                 </tr>
             </thead>
             <tbody>
-                 {% for obj in obj%}
-                  
+                 {% for obj in objs%}
+                   {#{ dump(obj.unPrice) }#}
                     <tr>
-                        <td scope="row">{{ obj.id }}</td>
+                        <td>{{ obj.id }}</td>
                         <td>{{ obj.name }}</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{ obj.supId }}</td>
+                        <td>{{ obj.catId }}</td>
+                        <td>{{ obj.qttUnit }}</td>
+                        <td>{{ obj.unPrice }}</td>
+                        <td>{{ obj.unStock }}</td>
+                        <td>{{ obj.unOO }}</td>
+                        <td>{{ obj.reorLvl }}</td>
+                        <td>{{ obj.disc }}</td>
                     </tr>
                  {% endfor %}
             </tbody>

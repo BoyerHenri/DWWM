@@ -17,7 +17,7 @@
            $obj = $repo->findAll();
    
            return $this->render('test/index.html.twig', [
-               'obj' =>  $obj
+               'objs' =>  $obj
            ]);
        }
    }
