@@ -37,7 +37,7 @@ VALUES
 ("Carquois",3),
 ("Kits de découverte",1),			                
 ("Plumes et vannes",6);            			
-*/
+
 
 -- Peuplement de la table SUPPLIERS
 
