@@ -15,9 +15,11 @@
        {
            $repo = $this->getDoctrine()->getRepository(Product::class);
            $obj = $repo->findAll();
-   
            return $this->render('test/index.html.twig', [
                'objs' =>  $obj
            ]);
+
+           $obj[0]->getSuppliers()->getName();
+
        }
    }

@@ -124,4 +124,26 @@
         {
             return $this->disc;
         } 
+
+
+          /**
+         * @var \Suppliers
+         *
+         * @ORM\ManyToOne(targetEntity="Supplier", inversedBy="products")
+         * @ORM\JoinColumn(name="SupplierId", referencedColumnName="SupplierId")
+         * 
+         */
+        private $suppliers;
+
+        public function getSuppliers(): ?Suppliers
+        {
+            return $this->suppliers;
+        }
+
+        public function setSuppliers(?Suppliers $supplier): self
+        {
+            $this->suppliers = $suppliers;
+
+            return $this;
+        }
     }
