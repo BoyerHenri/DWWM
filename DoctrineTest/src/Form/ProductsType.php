@@ -14,9 +14,8 @@ class ProductsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('ProductName')
-
             // Nom du produit
+            // ->add('ProductName')
             ->add('ProductName', TextType::class, [
                 'label' => 'Nom du produit',
                 'help' => 'Entrez ici le nom complet du produit',
@@ -32,7 +31,23 @@ class ProductsType extends AbstractType
                 ]
             ])
 
-            ->add('CategoryID')
+            // Category ID
+            // ->add('CategoryID')
+            ->add('CategoryID', TextType::class, [
+                'label' => 'Catégorie du produit',
+                'help' => 'Entrez ici le code catégorie du produit',
+                'attr' => [
+                    'placeholder' => '0',
+                ],
+                'constraints' => [
+                    new Regex([
+                        'pattern' => '/^[A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
+                        'message' => 'Caratère(s) non valide(s)'
+                    ]),
+                'help' => 'Vous devez rentrer la catégorie du produit ici',
+                ]
+            ])
+
             ->add('QuantityPerUnit')
             ->add('UnitPrice')
             ->add('UnitsInStock')
