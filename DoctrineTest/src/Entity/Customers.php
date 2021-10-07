@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\SuppliersRepository;
+use App\Repository\CustomersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SuppliersRepository::class)
+ * @ORM\Entity(repositoryClass=CustomersRepository::class)
  */
-class Suppliers
+class Customers
 {
     /**
      * @ORM\Id
@@ -70,18 +70,13 @@ class Suppliers
     private $Fax;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="CustomerID")
      */
-    private $HomePage;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Products::class, mappedBy="SupplierID")
-     */
-    private $SuppliersGetProducts;
+    private $CustomersgetOrders;
 
     public function __construct()
     {
-        $this->SuppliersGetProducts = new ArrayCollection();
+        $this->CustomersgetOrders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -209,49 +204,33 @@ class Suppliers
         return $this;
     }
 
-    public function getHomePage(): ?string
-    {
-        return $this->HomePage;
-    }
-
-    public function setHomePage(?string $HomePage): self
-    {
-        $this->HomePage = $HomePage;
-
-        return $this;
-    }
-
     /**
-     * @return Collection|Products[]
+     * @return Collection|Orders[]
      */
-    public function getSuppliersGetProducts(): Collection
+    public function getCustomersgetOrders(): Collection
     {
-        return $this->SuppliersGetProducts;
+        return $this->CustomersgetOrders;
     }
 
-    public function addSuppliersGetProduct(Products $suppliersGetProduct): self
+    public function addCustomersgetOrder(Orders $customersgetOrder): self
     {
-        if (!$this->SuppliersGetProducts->contains($suppliersGetProduct)) {
-            $this->SuppliersGetProducts[] = $suppliersGetProduct;
-            $suppliersGetProduct->setSupplierID($this);
+        if (!$this->CustomersgetOrders->contains($customersgetOrder)) {
+            $this->CustomersgetOrders[] = $customersgetOrder;
+            $customersgetOrder->setCustomerID($this);
         }
 
         return $this;
     }
 
-    public function removeSuppliersGetProduct(Products $suppliersGetProduct): self
+    public function removeCustomersgetOrder(Orders $customersgetOrder): self
     {
-        if ($this->SuppliersGetProducts->removeElement($suppliersGetProduct)) {
+        if ($this->CustomersgetOrders->removeElement($customersgetOrder)) {
             // set the owning side to null (unless already changed)
-            if ($suppliersGetProduct->getSupplierID() === $this) {
-                $suppliersGetProduct->setSupplierID(null);
+            if ($customersgetOrder->getCustomerID() === $this) {
+                $customersgetOrder->setCustomerID(null);
             }
         }
 
         return $this;
-    }
-    public function __toString()
-    {
-     return $this->CompanyName;
     }
 }

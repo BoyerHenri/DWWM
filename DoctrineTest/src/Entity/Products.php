@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -58,9 +60,19 @@ class Products
     private $Discontinued;
 
     /**
-     * @ORM\ManyToOne(targetEntity=suppliers::class, inversedBy="SuppliersGetProducts")
+     * @ORM\ManyToOne(targetEntity=Suppliers::class, inversedBy="SuppliersGetProducts")
      */
     private $SupplierID;
+
+    /**
+     * @ORM\OneToMany(targetEntity=OrderDetails::class, mappedBy="ProductID")
+     */
+    private $ProductsGetOrderDetails;
+
+    public function __construct()
+    {
+        $this->ProductsGetOrderDetails = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +183,36 @@ class Products
     public function setSupplierID(?suppliers $SupplierID): self
     {
         $this->SupplierID = $SupplierID;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrderDetails[]
+     */
+    public function getProductsGetOrderDetails(): Collection
+    {
+        return $this->ProductsGetOrderDetails;
+    }
+
+    public function addProductsGetOrderDetail(OrderDetails $productsGetOrderDetail): self
+    {
+        if (!$this->ProductsGetOrderDetails->contains($productsGetOrderDetail)) {
+            $this->ProductsGetOrderDetails[] = $productsGetOrderDetail;
+            $productsGetOrderDetail->setProductID($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsGetOrderDetail(OrderDetails $productsGetOrderDetail): self
+    {
+        if ($this->ProductsGetOrderDetails->removeElement($productsGetOrderDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($productsGetOrderDetail->getProductID() === $this) {
+                $productsGetOrderDetail->setProductID(null);
+            }
+        }
 
         return $this;
     }
