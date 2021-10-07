@@ -94,11 +94,11 @@
          // déplacer et renommer le fichier 
          $extension = substr(strrchr($_FILES["FILE"]["name"], "."), 1);
          $name_fic=$pro_id.".".$extension;
-         // Portable : home/hbg/Documents/GitHub/DWWM/JarditouFinal/src/img/
+         // Portable : /home/hbg/Documents/GitHub/DWWM/JarditouFinal/src/img/16.png
          // AFPA : /home/hbg/Documents/DepotsLocaux/DWWM/JarditouFinal/src/img/
          // TO DO -- PC
          // TO DO -- MAC
-         move_uploaded_file($_FILES["FILE"]["tmp_name"], "/home/hbg/Documents/DepotsLocaux/DWWM/JarditouFinal/src/img/".$name_fic);    
+         move_uploaded_file($_FILES["FILE"]["tmp_name"], "/home/hbg/Documents/GitHub/DWWM/JarditouFinal/src/img/".$name_fic);    
          //$extension = substr(strrchr($_FILES["FILE"]["name"], "."), 1);
          echo "<br><br> >>".$name_fic;
      } 
