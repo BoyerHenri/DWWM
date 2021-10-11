@@ -1,6 +1,54 @@
-{{ form_start(form) }}
-    <form>
-        {{ form_widget(form) }}
-        <button type="button" class="btn btn-dark">{{ button_label|default('Save') }}</button>
-    </form>
+ 
+ {{ form_start(form) }}
+    {#{ form_widget(form) }#}
+
+   <!-- <div class="container"> -->
+        <!-- Produit et fournisseur -->  
+        <div class="form-row">  
+            <div class="form-group col-md-6">
+                {{ form_row(form.ProductName) }}
+            </div>
+            <div class="form-group col-md-6">
+                {{ form_row(form.SupplierID) }}
+            </div>
+        </div>
+
+        <!-- Category Quantite Prix -->  
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form_row(form.CategoryID) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_row(form.QuantityPerUnit) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_row(form.UnitPrice) }}
+            </div>
+        </div>
+
+        <!-- Stock Commande Alerte -->  
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                {{ form_row(form.UnitsInStock) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_row(form.UnitsOnOrder) }}
+            </div>
+            <div class="form-group col-md-4">
+                {{ form_row(form.ReorderLevel) }}
+            </div>
+        </div>
+
+        <!-- Bouttons  type="submit" -->
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <button type="button" class="btn btn-secondary btn-lg btn-block"><a href="{{ path('products_index') }}">Retour</a></button>
+            </div>
+             <div class="form-group col-md-6">
+                <button  class="btn btn-primary btn-lg btn-block">{{ button_label|default('Sauvegarder') }}</button>  
+            </div>
+        </div>
+
+
+   <!-- </div> -->
 {{ form_end(form) }}

@@ -17,17 +17,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductsController extends AbstractController
 {
     /**
-     * @Route("/", name="products_index", methods={"GET","POST"})
+     * @Route("/", name="products_index", methods={"GET"})
      */
     public function index(ProductsRepository $productsRepository): Response
     {
         return $this->render('products/index.html.twig', [
-            'products' => $productsRepository->findAll(),
+            'product' => $productsRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="products_new", methods={"GET","POST"})
+     * @Route("/new", name="products_new", methods={"POST"})
      * @param Request $request
      * @return Response
      */
@@ -35,7 +35,12 @@ class ProductsController extends AbstractController
     {
         $product = new Products();
         $form = $this->createForm(ProductsType::class, $product);
+
+      
+
         $form->handleRequest($request);
+
+       
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -47,11 +52,11 @@ class ProductsController extends AbstractController
                 'Produit ajouté avec succès !!'
             );
 
-            return $this->redirectToRoute('products_index',[], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('products_index');
         }
 
         return $this->render('products/new.html.twig', [
-            'products' => $product,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }
@@ -62,7 +67,7 @@ class ProductsController extends AbstractController
     public function show(Products $product): Response
     {
         return $this->render('products/show.html.twig', [
-            'products' => $product,
+            'product' => $product,
         ]);
     }
 
@@ -81,7 +86,7 @@ class ProductsController extends AbstractController
         }
 
         return $this->render('products/edit.html.twig', [
-            'products' => $product,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }

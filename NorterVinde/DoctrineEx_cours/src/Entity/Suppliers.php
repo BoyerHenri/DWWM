@@ -6,6 +6,7 @@ use App\Repository\SuppliersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,7 +21,7 @@ class Suppliers
      */
     private $id;
 
-   /**
+    /**
      * @ORM\Column(type="string", length=40)
      * @Assert\NotBlank(
      *     message="Veuillez renseigner le nom du fournisseur"
@@ -33,9 +34,9 @@ class Suppliers
     private $CompanyName;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
+     *     message="Veuillez renseigner le nom du contact"
      * )
      * @Assert\Regex(
      *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
@@ -46,9 +47,6 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
      *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
      *     message="Caratère(s) non valide(s)"
@@ -58,11 +56,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=60, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
+     *     pattern="/^[\s\w\#\_\-.éèàçâêîôûùäaëïüö]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -70,11 +65,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
+     *     pattern="/^[A-z\séèàçâêîôûùäaëïüö]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -82,11 +74,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
+     *     pattern="/^[A-z\s]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -94,9 +83,6 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
      *     pattern="/^[0-9]+$/",
      *     message="Caratère(s) non valide(s)"
@@ -106,11 +92,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
+     *     pattern="/^[A-z]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -118,11 +101,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=24, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[\s\w\#\_\-éèàçâêîôûùäaëïüö]+$/",
+     *     pattern="/^[0-9()]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -130,11 +110,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="string", length=24, nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[0-9]+$/",
+     *     pattern="/^[0-9()]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -142,11 +119,8 @@ class Suppliers
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank(
-     *     message="Veuillez renseigner le nom du fournisseur"
-     * )
      * @Assert\Regex(
-     *     pattern="/^[0-9]+$/",
+     *     pattern="/^[A-z0-9À-ž\s.,;:]+$/",
      *     message="Caratère(s) non valide(s)"
      * )
      */
@@ -155,11 +129,11 @@ class Suppliers
     /**
      * @ORM\OneToMany(targetEntity=Products::class, mappedBy="SupplierID")
      */
-    private $SuppliersGetProducts;
+    private $relationproducts;
 
     public function __construct()
     {
-        $this->SuppliersGetProducts = new ArrayCollection();
+        $this->relationproducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,7 +158,7 @@ class Suppliers
         return $this->ContactName;
     }
 
-    public function setContactName(?string $ContactName): self
+    public function setContactName(string $ContactName): self
     {
         $this->ContactName = $ContactName;
 
@@ -302,32 +276,33 @@ class Suppliers
     /**
      * @return Collection|Products[]
      */
-    public function getSuppliersGetProducts(): Collection
+    public function getRelationproducts(): Collection
     {
-        return $this->SuppliersGetProducts;
+        return $this->relationproducts;
     }
 
-    public function addSuppliersGetProduct(Products $suppliersGetProduct): self
+    public function addRelationproduct(Products $relationproduct): self
     {
-        if (!$this->SuppliersGetProducts->contains($suppliersGetProduct)) {
-            $this->SuppliersGetProducts[] = $suppliersGetProduct;
-            $suppliersGetProduct->setSupplierID($this);
+        if (!$this->relationproducts->contains($relationproduct)) {
+            $this->relationproducts[] = $relationproduct;
+            $relationproduct->setSupplierID($this);
         }
 
         return $this;
     }
 
-    public function removeSuppliersGetProduct(Products $suppliersGetProduct): self
+    public function removeRelationproduct(Products $relationproduct): self
     {
-        if ($this->SuppliersGetProducts->removeElement($suppliersGetProduct)) {
+        if ($this->relationproducts->removeElement($relationproduct)) {
             // set the owning side to null (unless already changed)
-            if ($suppliersGetProduct->getSupplierID() === $this) {
-                $suppliersGetProduct->setSupplierID(null);
+            if ($relationproduct->getSupplierID() === $this) {
+                $relationproduct->setSupplierID(null);
             }
         }
 
         return $this;
     }
+
     public function __toString()
     {
      return $this->CompanyName;
