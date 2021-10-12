@@ -93,7 +93,7 @@ class ProductsController extends AbstractController
                 // renommage du fichier
                 // nom du fichier + extension
                 $newPicture = $idProduct . '.' . $pictureFile->guessExtension();
-            // assignation de la valeur à la propriété picture à l'aide du setter
+                // assignation de la valeur à la propriété picture à l'aide du setter
                 $product->setPicture($newPicture);
                 try {
                         // déplacement du fichier vers le répertoire de destination sur le serveur

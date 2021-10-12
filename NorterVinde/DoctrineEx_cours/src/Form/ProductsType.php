@@ -97,7 +97,7 @@ class ProductsType extends AbstractType
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[0-9]+$/',
+                        'pattern' => '/^[0-9.]+$/',
                         'message' => 'Veuillez saisir un prix unitaire correct.'
                     ]),
                     new NotBlank([
@@ -178,6 +178,10 @@ class ProductsType extends AbstractType
             // Champ Discontinued //
             ->add('Discontinued', TextType::class, [
                 'label' => 'Discontinued',
+                'attr' => [
+                    'placeholder' => '1',
+                    'value' =>1
+                ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[0-1]+$/',
