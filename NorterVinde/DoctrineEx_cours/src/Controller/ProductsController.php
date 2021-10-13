@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
+
 /**
  * @Route("/products")
  */
@@ -40,9 +41,42 @@ class ProductsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Ajout de l'URL dans le champ de la BDD
+            // récupération de la saisi sur l'upload
+            $pictureFile = $form['picture2']->getData();
+            $this->getDoctrine()->getManager()->flush();
+
+            // Updtae
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+           
+            // Nouvel ID recup
+            $idProduct = $product->getId();
+
+            // vérification s'il y a un upload photo
+            if ($pictureFile) {
+                // renommage du fichier
+                // nom du fichier + extension
+                //$newPicture = md5(uniqid()) . '.' . $pictureFile->guessExtension();
+                $newPicture =$idProduct . '.' . $pictureFile->guessExtension();
+                // assignation de la valeur à la propriété picture à l'aide du setter
+                $product->setPicture($newPicture);
+                try {
+                    // déplacement du fichier vers le répertoire de destination sur le serveur
+                    $pictureFile->move(
+                        $this->getParameter('photo_directory'),
+                        $newPicture
+                    );      
+                    // Update
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($product);
+                    $entityManager->flush();
+                } catch (FileException $e) {
+            // gestion de l'erreur si le déplacement ne s'est pas effectué
+                }
+            }
+     
 
         $this->addFlash(
             'success',
@@ -82,12 +116,15 @@ class ProductsController extends AbstractController
         $idProduct = $product->getId();
         $form = $this->createForm(ProductsType::class, $product);
         $form->handleRequest($request);
-
+      
         if ($form->isSubmitted() && $form->isValid()) {
             // récupération de la saisi sur l'upload
+           // dd($form['picture2']->getData());
             $pictureFile = $form['picture2']->getData();
             $this->getDoctrine()->getManager()->flush();
-
+            
+            // $imgName = strstr($pictureFile->getClientOriginalName(), '.', true);
+            
             // vérification s'il y a un upload photo
             if ($pictureFile) {
                 // renommage du fichier
@@ -95,17 +132,28 @@ class ProductsController extends AbstractController
                 $newPicture = $idProduct . '.' . $pictureFile->guessExtension();
                 // assignation de la valeur à la propriété picture à l'aide du setter
                 $product->setPicture($newPicture);
-                try {
+                 try {
                         // déplacement du fichier vers le répertoire de destination sur le serveur
                         $pictureFile->move(
                         $this->getParameter('photo_directory'),
                         $newPicture
-                    );
+                    );  
+
+                    // Update
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($product);
+                    $entityManager->flush();         
+
                 } catch (FileException $e) {
                     // gestion de l'erreur si le déplacement ne s'est pas effectué
                     echo "Fichier non valide ";
                 }
             }
+
+            $this->addFlash(
+                'success',
+                'Intervention terminée'
+            );
 
             return $this->redirectToRoute('products_index', [], Response::HTTP_SEE_OTHER);
         }

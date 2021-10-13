@@ -96,8 +96,8 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
         }
 
         // For example : 
-        return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        return new RedirectResponse($this->urlGenerator->generate('liste'));
+        return new RedirectResponse($this->urlGenerator->generate('products_index'));
+        // return new RedirectResponse($this->urlGenerator->generate('liste'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

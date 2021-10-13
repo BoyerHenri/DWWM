@@ -36,7 +36,7 @@ class ProductsType extends AbstractType
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
+                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
                         'message' => 'Caratère(s) non valide(s)'
                     ]),
                     new NotBlank([
@@ -74,14 +74,14 @@ class ProductsType extends AbstractType
 
             // Champ Quantité Par Unité //
             ->add('QuantityPerUnit', TextType::class, [
-                'label' => 'Quantité par unité',
+                'label' => 'Description du lot',
                 'attr' => [
                     'placeholder' => 'Quantité par unité',
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[0-9]+$/',
-                        'message' => 'Veuillez saisir une quantité par unité correct.'
+                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
+                        'message' => 'Veuillez saisir une description correcte.'
                     ]),
                     new NotBlank([
                         'message' => 'Veuillez saisir une quantité par unité !'
@@ -165,6 +165,10 @@ class ProductsType extends AbstractType
                 'mapped' => false,
                 // pour éviter de recharger la photo lors de l'édition du profil
                 'required' => false,
+                'attr' => [
+                    'placeholder' => 'Produit',
+                    'value' => 'Image'
+                ],
                 'constraints' => [
                     new Image([
                         'maxSize' => '2000k',

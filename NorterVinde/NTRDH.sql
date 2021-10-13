@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 12 oct. 2021 à 16:17
+-- Généré le : mer. 13 oct. 2021 à 14:31
 -- Version du serveur :  10.3.31-MariaDB-0ubuntu0.20.04.1
 -- Version de PHP : 7.4.3
 
@@ -125,7 +125,7 @@ CREATE TABLE `products` (
   `reorder_level` smallint(6) NOT NULL DEFAULT 0,
   `discontinued` tinyint(1) NOT NULL DEFAULT 0,
   `supplier_id_id` int(11) DEFAULT NULL,
-  `picture` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -133,21 +133,21 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `category_id`, `quantity_per_unit`, `unit_price`, `units_in_stock`, `units_on_order`, `reorder_level`, `discontinued`, `supplier_id_id`, `picture`) VALUES
-(1, 'Chai CHIN', 1, '10', '542.0000', 39, 0, 10, 1, 1, NULL),
+(1, 'Chai CHIN', 1, '10', '100.0000', 39, 0, 10, 1, 1, NULL),
 (2, 'Chang', 1, '24 - 12 oz bottles', '19.0000', 17, 40, 25, 0, 1, NULL),
-(3, 'Aniseed Syrup', 2, '12 - 550 ml bottles', '10.0000', 13, 70, 25, 0, 1, NULL),
-(4, 'Chef Anton\'s Cajun Seasoning', 2, '48 - 6 oz jars', '22.0000', 53, 0, 0, 0, 2, NULL),
+(3, 'Aniseed Syrup', 2, '12 - 550 ml bottles', '10.0000', 13, 70, 25, 1, 1, NULL),
+(4, 'd', 2, '48 - 6 oz jars', '22.0000', 53, 0, 0, 1, 2, NULL),
 (5, 'Chef Anton\'s Gumbo Mix', 2, '36 boxes', '21.3500', 0, 0, 0, 1, 2, NULL),
-(6, 'Grandma\'s Boysenberry Spread', 2, '12 - 8 oz jars', '25.0000', 120, 0, 25, 0, 3, NULL),
-(7, 'Uncle Bob\'s Organic Dried Pears', 7, '12 - 1 lb pkgs.', '30.0000', 15, 0, 10, 0, 3, NULL),
+(6, 'ccc', 2, 'ddd8 oz jars', '25.0000', 120, 0, 25, 1, 3, NULL),
+(7, 'abc', 7, '123', '100.0000', 15, 0, 10, 1, 3, NULL),
 (8, 'Northwoods Cranberry Sauce', 2, '12 - 12 oz jars', '40.0000', 6, 0, 0, 0, 3, NULL),
 (9, 'Mishi Kobe Niku', 6, '18 - 500 g pkgs.', '97.0000', 29, 0, 0, 1, 4, NULL),
 (10, 'Ikura', 8, '12 - 200 ml jars', '31.0000', 31, 0, 0, 0, 4, NULL),
-(11, 'Queso Cabrales', 4, '1 kg pkg.', '21.0000', 22, 30, 30, 0, 5, NULL),
+(11, 'Queso Cabrales', 4, '2 l', '21.0000', 22, 30, 30, 1, 5, NULL),
 (12, 'Queso Manchego La Pastora', 4, '10 - 500 g pkgs.', '38.0000', 86, 0, 0, 0, 5, NULL),
-(13, 'Konbu', 8, '2 kg box', '6.0000', 24, 0, 5, 0, 6, NULL),
+(13, 'Konbu', 8, '2 kg box', '6.0000', 24, 0, 5, 1, 6, NULL),
 (14, 'Tofu', 7, '40 - 100 g pkgs.', '23.2500', 35, 0, 0, 0, 6, NULL),
-(15, 'Genen Shouyu', 2, '24 - 250 ml bottles', '15.5000', 39, 0, 5, 0, 6, NULL),
+(15, 'Genen Shouyu', 2, '24 - 250 ml bottles', '15.5000', 39, 0, 5, 1, 6, NULL),
 (16, 'Pavlova', 3, '32 - 500 g boxes', '17.4500', 29, 0, 10, 0, 7, NULL),
 (17, 'Alice Mutton', 6, '20 - 1 kg tins', '39.0000', 0, 0, 0, 1, 7, NULL),
 (18, 'Carnarvon Tigers', 8, '16 kg pkg.', '62.5000', 42, 0, 0, 0, 7, NULL),
@@ -210,11 +210,13 @@ INSERT INTO `products` (`id`, `product_name`, `category_id`, `quantity_per_unit`
 (75, 'Rhnbru Klosterbier', 1, '24 - 0.5 l bottles', '7.7500', 125, 0, 25, 0, 12, NULL),
 (76, 'Lakkalikri', 1, '500 ml', '18.0000', 57, 0, 20, 0, 23, NULL),
 (77, 'Original Frankfurter grne Soe', 2, '12 boxes', '13.0000', 32, 0, 15, 0, 12, NULL),
-(80, 'Jeremy', 1, '2 x 4 Boxer', '1.0000', 1, 1, 1, 1, 1, NULL),
+(80, 'Jeremy2', 1, '2 x 4 Boxers', '1.0000', 1, 1, 1, 1, 1, NULL),
 (81, 'Henry II', 2, '4', '750.0000', 1, 1, 1, 1, 5, NULL),
 (83, 'Paul', 3, '2', '200.0000', 5, 2, 1, 0, 13, NULL),
 (84, 'Barbecue', 5, '3', '100.0000', 100, 5, 3, 1, 1, ''),
-(85, 'Xaviier éé', 1, '1', '0.0500', 1, 1, 1, 1, 6, NULL);
+(85, 'Xaviier éé', 1, '1', '0.0500', 1, 1, 1, 1, 6, NULL),
+(86, 'Ailton', 4, '1', '0.2500', 200, 1, 10, 1, 14, NULL),
+(88, 'vv', 10, '5', '10.0000', 10, 10, 10, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -284,6 +286,14 @@ CREATE TABLE `user` (
   `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
+(1, 'boyerhenri@sfr.fr', '[]', '$argon2id$v=19$m=65536,t=4,p=1$qUUuvk6L9fmKll4SCInBAQ$rGd8/8drLWJKlmHZYooYkqQfLyesRC2+sZ/srZesuv0'),
+(2, 'batman@asylum.fr', '[]', '$argon2id$v=19$m=65536,t=4,p=1$fOQcAVmWXA/8/bY60Gho0g$3CWbzzFqnRN0kNtLuWNsYnDtI+TMjhw6iFKCc4Nf3Oo');
 
 --
 -- Index pour les tables déchargées
@@ -362,7 +372,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT pour la table `suppliers`
@@ -374,7 +384,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
