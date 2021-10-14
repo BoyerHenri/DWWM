@@ -55,7 +55,6 @@ class CartController extends AbstractController
         }
         //
         $session->set('panier',$panier);
-        //dd($panier);
         return $this->redirectToRoute('cart');
     }
 
@@ -79,6 +78,14 @@ class CartController extends AbstractController
     {
         $session->set("panier", []);
         //
+        return $this->redirectToRoute('cart');
+    }
+
+    /**
+     * @Route("/commande", name="cart_commande")
+     */
+    public function validation(SessionInterface $session) {
+        $panier = $session->get('panier', []);
         return $this->redirectToRoute('cart');
     }
 }

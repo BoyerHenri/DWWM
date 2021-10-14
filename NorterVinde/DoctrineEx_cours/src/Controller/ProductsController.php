@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/products")
@@ -28,6 +28,7 @@ class ProductsController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/new", name="products_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
@@ -105,6 +106,7 @@ class ProductsController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}/edit", name="products_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Products $product
@@ -165,6 +167,7 @@ class ProductsController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/{id}", name="products_delete", methods={"POST"})
      */
     public function delete(Request $request, Products $product): Response

@@ -4,8 +4,9 @@
 
 {% block body %}
     <div class="container">
-        <h1>Produits</h1>
-
+        <h1>Details de...</h1>
+        {{ product.ProductName }}
+        <br>
         <table class="table">
             <tbody>
                 <tr>
@@ -52,7 +53,6 @@
         </table>
 
         <a href="{{ path('products_index') }}">back to list</a>
-
         <a href="{{ path('products_edit', {'id': product.id}) }}">edit</a>
 
         {{ include('products/_delete_form.html.twig') }}

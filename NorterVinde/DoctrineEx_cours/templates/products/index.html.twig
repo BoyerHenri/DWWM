@@ -1,51 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Products{% endblock %}
+{% block title %}Catalogue...{% endblock %}
 
 {% block body %}
-    <h1 class="text-center">Produits</h1>
+    <style>
+        .icon-view { color: #0000FF; }
+        .icon-buy { color: #000000; }
+        .ok-icon { color: #0000FF; }
+        .no-icon { color: #FF0000; }
+    </style>
 
-    <table class="table">
+    <h1 class="text-center">Notre catalogue</h1>
+    <table class="table text-center">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>ProductName</th>
-                <th>CategoryID</th>
-                <th>QuantityPerUnit</th>
-                <th>UnitPrice</th>
-                <th>UnitsInStock</th>
-                <th>UnitsOnOrder</th>
-                <th>ReorderLevel</th>
-                <th>Discontinued</th>
-                <th>actions</th>
+                {# <th>Id</th> #}
+                <th>Article</th>
+                {# <th>CategoryID</th> #} 
+                <th>Description</th>
+                <th>Prix</th>
+                {# <th>UnitsInStock</th> #}
+                {# <th>UnitsOnOrder</th> #}
+                {# <th>ReorderLevel</th> #}
+                <th>En stock ?</th>
+                <th>Voir</th>
+                <th>Rajouter</th>
             </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.id }}</td>
+                {# <td>{{ product.id }}</td> #}
                 <td>{{ product.ProductName }}</td>
-                <td>{{ product.CategoryID }}</td>
+                {# <td>{{ product.CategoryID }}</td> #} 
                 <td>{{ product.QuantityPerUnit }}</td>
                 <td>{{ product.UnitPrice }}</td>
-                <td>{{ product.UnitsInStock }}</td>
-                <td>{{ product.UnitsOnOrder }}</td>
-                <td>{{ product.ReorderLevel }}</td>
-                <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
+                {# <td>{{ product.UnitsInStock }}</td> #}
+                {#  <td>{{ product.UnitsOnOrder }}</td> #}
+                {# <td>{{ product.ReorderLevel }}</td> #}
+                <td>{{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"></i>' : '<i class="bi bi-x-octagon no-icon"></i>' }}</td>
     
                 <td>
-                    <a href="{{ path('products_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('products_edit', {'id': product.id}) }}">edit</a>
-                    <a href="{{ path('cart_add',{'id': product.id}) }}"><i class="bi bi-cart4">Achat</i></a>
+                    <a href="{{ path('products_show', {'id': product.id}) }}"><i class="bi bi-info-circle-fill icon-view"></i></a>
+                    {# <a href="{{ path('products_edit', {'id': product.id}) }}">edit</a> #}
+                </td>
+                <td>
+                    <a href="{{ path('cart_add',{'id': product.id}) }}"><i class="bi bi-cart4 icon-buy"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun enregistrement en boutique</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('products_new') }}">Create new</a>
+    {# Ajout #}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('products_new') }}">Create new</a>
+    {% else %}
+        2021 
+    {% endif %}
+
 {% endblock %}
