@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du produit{% endblock %}
+
+{% block body %}
+    <style>
+        .icon-back { color: #FFC300; }
+        img { max-width: 100%; height: auto; }
+    </style>
+
+    <div class="container">
+        <h1>Details de...</h1>
+
+        {# IMAGE TEST 
+        <img src="{{ asset('/images/produit/1.jpeg') }}" class="..." alt="...">
+        #}
+
+        <h2> {{ product.ProductName }} </h2>
+
+        <br>
+        <br> 
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ product.id }}</td>
+                </tr>
+                <tr>
+                    <th>Product Name</th>
+                    <td>{{ product.ProductName }}</td>
+                </tr>
+                <tr>
+                    <th>CategoryID</th>
+                    <td>{{ product.CategoryID }}</td>
+                </tr>
+                <tr>
+                    <th>QuantityPerUnit</th>
+                    <td>{{ product.QuantityPerUnit }}</td>
+                </tr>
+                <tr>
+                    <th>UnitPrice</th>
+                    <td>{{ product.UnitPrice }}</td>
+                </tr>
+                <tr>
+                    <th>UnitsInStock</th>
+                    <td>{{ product.UnitsInStock }}</td>
+                </tr>
+                <tr>
+                    <th>UnitsOnOrder</th>
+                    <td>{{ product.UnitsOnOrder }}</td>
+                </tr>
+                <tr>
+                    <th>ReorderLevel</th>
+                    <td>{{ product.ReorderLevel }}</td>
+                </tr>
+                <tr>
+                    <th>Discontinued</th>
+                    <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>
+                        {#{ product.Picture }#}
+                       <img src="/images/produit/{{product.Picture}}" width="90 %" class="Photo du produit" alt="Photo du produit">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        {# Editer ou Supprimer / ADMIN #}
+       
+        {% if is_granted('ROLE_ADMIN') %}
+            <button type="button" class="btn btn-light btn-block">
+                <a href="{{ path('products_edit', {'id': product.id}) }}">ADMIN : <i class="bi bi-box-seam"> Modifier la fiche produit.</i></a>   
+                {{ include('products/_delete_form.html.twig') }}
+        {% else %}
+            2021 HBg
+        {% endif %}
+
+        {# Retour #}
+        <i class="bi bi-box-arrow-in-up-left icon-back"><a href="{{ path('products_index') }}"> Retour</a></i>
+    </div>
+{% endblock %}

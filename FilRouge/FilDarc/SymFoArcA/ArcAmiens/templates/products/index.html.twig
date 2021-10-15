@@ -54,17 +54,19 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">Aucun enregistrement en boutique</td>
+                <td colspan="10">Aucun enregistrement dans le catalogue</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    {# Ajout #}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('products_new') }}">Create new</a>
-    {% else %}
-        2021 
-    {% endif %}
+    {# Ajout de produit / ADMIN #}
+    <button type="button" class="btn btn-light btn-block">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('products_new') }}">ADMIN : <i class="bi bi-box-seam"> Insérer un nouveau produit.</i></a>
+        {% else %}
+            2021 
+        {% endif %}
+    </button>
 
 {% endblock %}
