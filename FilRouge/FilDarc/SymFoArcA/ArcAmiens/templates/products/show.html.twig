@@ -3,43 +3,51 @@
 {% block title %}Détails du produit{% endblock %}
 
 {% block body %}
-    <style>
-        .icon-back { color: #FFC300; }
-        img { max-width: 100%; height: auto; }
-    </style>
 
     <div class="container">
         <h1>Details de...</h1>
 
         {# IMAGE TEST 
-        <img src="{{ asset('/images/produit/1.jpeg') }}" class="..." alt="...">
+            <img src="{{ asset('/images/produit/1.jpeg') }}" class="..." alt="...">
         #}
-
-        <h2> {{ product.ProductName }} </h2>
 
         <br>
         <br> 
 
-        <table class="table">
+        <h2 class="text-center"> {{ product.ProductName }} </h2>
+
+        <br>
+        <br> 
+
+        <table class="table table-bordered">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ product.id }}</td>
+                 <tr>
+                    <th>Image</th>
+                    <td>
+                        {#{ product.Picture }#}
+                       <img src="/images/produit/{{product.Picture}}" width="90 %" class="Photo du produit" alt="Photo du produit">
+                    </td>
                 </tr>
                 <tr>
-                    <th>Product Name</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>Id</th>
+                        <td>{{ product.id }}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>Nom du produit</th>
                     <td>{{ product.ProductName }}</td>
                 </tr>
                 <tr>
-                    <th>CategoryID</th>
+                    <th>Catégorie</th>
                     <td>{{ product.CategoryID }}</td>
                 </tr>
                 <tr>
-                    <th>QuantityPerUnit</th>
+                    <th>Description</th>
                     <td>{{ product.QuantityPerUnit }}</td>
                 </tr>
                 <tr>
-                    <th>UnitPrice</th>
+                    <th>Prix</th>
                     <td>{{ product.UnitPrice }}</td>
                 </tr>
                 <tr>
@@ -47,23 +55,22 @@
                     <td>{{ product.UnitsInStock }}</td>
                 </tr>
                 <tr>
-                    <th>UnitsOnOrder</th>
-                    <td>{{ product.UnitsOnOrder }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>UnitsOnOrder</th>
+                        <td>{{ product.UnitsOnOrder }}</td>
+                    {% endif %}
                 </tr>
                 <tr>
-                    <th>ReorderLevel</th>
-                    <td>{{ product.ReorderLevel }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>ReorderLevel</th>
+                        <td>{{ product.ReorderLevel }}</td>
+                    {% endif %}
                 </tr>
                 <tr>
-                    <th>Discontinued</th>
-                    <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
-                </tr>
-                <tr>
-                    <th>Image</th>
-                    <td>
-                        {#{ product.Picture }#}
-                       <img src="/images/produit/{{product.Picture}}" width="90 %" class="Photo du produit" alt="Photo du produit">
-                    </td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th>Discontinued</th>
+                        <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
+                    {% endif %}
                 </tr>
             </tbody>
         </table>
@@ -75,10 +82,10 @@
                 <a href="{{ path('products_edit', {'id': product.id}) }}">ADMIN : <i class="bi bi-box-seam"> Modifier la fiche produit.</i></a>   
                 {{ include('products/_delete_form.html.twig') }}
         {% else %}
-            2021 HBg
+            {# 2021 HBg #}
         {% endif %}
 
         {# Retour #}
-        <i class="bi bi-box-arrow-in-up-left icon-back"><a href="{{ path('products_index') }}"> Retour</a></i>
+        <i class="bi bi-box-arrow-in-up-left icon-back"><a href="{{ path('products_index') }}"> Retour au catalogue</a></i>
     </div>
 {% endblock %}

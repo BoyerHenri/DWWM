@@ -11,6 +11,12 @@
 
         {% block stylesheets %}{% endblock %}
 
+        {# Styles #}
+        <style>
+            img { max-width: 100%; height: auto;  margin: 0 auto;}
+            .icon-back { color: #FFC300; }
+        </style>
+        
     </head>
     <body>
 
@@ -28,6 +34,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('cart') }}"><i class="bi bi-basket-fill"> Panier </i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-clipboard-check"> Espace client </i></a>
                             </li>
                         </ul>
                     </div>
