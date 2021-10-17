@@ -15,6 +15,11 @@
         <style>
             img { max-width: 100%; height: auto;  margin: 0 auto;}
             .icon-back { color: #FFC300; }
+             body{ 
+                background-color: #DBDBDB; 
+                background-image:url(/images/produit/Fond.jpeg);
+                background-attachment:fixed;
+                }
         </style>
         
     </head>
@@ -24,9 +29,10 @@
                 <!-- NavBar -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
                     <a class="navbar-brand" href="{{ path('home') }}"><i class="bi bi-house-fill"> Accueil </i></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
@@ -39,6 +45,9 @@
                                 <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-clipboard-check"> Espace client </i></a>
                             </li>
                         </ul>
+                        <img src="/images/produit/LogoFA.png" alt="Logo du site, blason et nom" class="float-right" width="150">
+                        {# <h1>AMIENS ARCHERIE</h1> #}
+
                     </div>
                 </nav>
             <div>
@@ -58,4 +67,11 @@
         {% block javascripts %}{% endblock %}    
 
     </body>
+
+    <br>
+    <footer>
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+            <h5>HBg Amiens Archerie 2021</h5>
+        </nav>
+    </footer>
 </html>
