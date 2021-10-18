@@ -56,19 +56,19 @@
                 </tr>
                 <tr>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <th>UnitsOnOrder</th>
+                        <th>En commande</th>
                         <td>{{ product.UnitsOnOrder }}</td>
                     {% endif %}
                 </tr>
                 <tr>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <th>ReorderLevel</th>
+                        <th>Stock d'alerte</th>
                         <td>{{ product.ReorderLevel }}</td>
                     {% endif %}
                 </tr>
                 <tr>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <th>Discontinued</th>
+                        <th>Disponibilité</th>
                         <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
                     {% endif %}
                 </tr>
