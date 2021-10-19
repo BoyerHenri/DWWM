@@ -57,9 +57,19 @@
             #} 
 
             {% else %}
-                <p> *** PANIER VIDE *** </p>
+                <span class="d-block p-2 bg-dark text-white">
+                  
+                        <p class="text-center"> 
+                            <br>
+                            Aucun produit dans le panier !
+                            <br>
+                            Vous pouvez visiter notre <a class="nav-link" href="{{ path('products_index') }}"><i class="bi bi-shop"> catalogue </i></a>
+                        </p>
+                  
+                </span>
         {% endif %}
         
     </div>
 </div>
-{% endblock %}
+{% endblock %}  
+
