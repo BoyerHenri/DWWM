@@ -8,6 +8,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Icone bootsrap lien complet -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <!-- Fonts, labeur -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+        <!-- Fonts, titres -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
         {% block stylesheets %}{% endblock %}
 
@@ -15,42 +23,76 @@
         <style>
             img { max-width: 100%; height: auto;  margin: 0 auto;}
             .icon-back { color: #FFC300; }
-             body{ 
+            body{ 
                 background-color: #DBDBDB; 
-                background-image:url(/images/produit/Fond.jpeg);
+                background-image:url(/images/Fond.jpeg);
                 background-attachment:fixed;
-                }
+                font-family: 'Josefin Sans', sans-serif; 
+                font-size: 18px;
+            }
+            h1,h2 {font-family: 'Anton', sans-serif; }
+            h3,h4,h5,h6 {
+               font-family: 'Josefin Sans', sans-serif; 
+               }
+            p {
+                font-family: 'Josefin Sans', sans-serif; 
+            }
+            {# Lettrine #}
+            p::first-letter {
+                color: red;
+                font-size: 130%;
+            }
+            .icon-view { color: #0000FF; }
+            .icon-buy { color: #000000; }
+            .ok-icon { color: #0000FF; }
+            .no-icon { color: #FF0000; }
         </style>
         
     </head>
     <body>
+        <div class="container">
+            <!-- NavBar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-warning rounded">
+                <a class="navbar-brand" href="{{ path('home') }}"><i class="bi bi-house-fill"> Accueil </i></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('products_index') }}"><i class="bi bi-shop"> Notre catalogue </i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('cart') }}"><i class="bi bi-basket-fill"> Panier </i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-clipboard-check"> Espace client </i></a>
+                        </li>
+                        {# Logout si login #}
+                        <li>
+                            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}                                       
+                                <div class="col">
+                                    <button type="button" class="btn btn-danger btn-block float-right">                                                                        
+                                        <a href="{{ path('app_logout') }}"> Se deconnecter</a>                                      
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+                {# Logo #}
+                <img src="/images/LogoFA.png" alt="Logo du site, blason et nom" class="float-right" width="150">       
+            </nav>
+                {# Verifie si qqn est connecté #}
+            {% if app.user %}
+                <div class="text-center card mb-4">
+                        Connecté sous : 
+                        {{ app.user.username }}
+                </div>
+            {% endif %}
+        <div>
 
-            <div class="container">
-                <!-- NavBar -->
-                <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-                    <a class="navbar-brand" href="{{ path('home') }}"><i class="bi bi-house-fill"> Accueil </i></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ path('products_index') }}"><i class="bi bi-shop"> Notre catalogue </i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('cart') }}"><i class="bi bi-basket-fill"> Panier </i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-clipboard-check"> Espace client </i></a>
-                            </li>
-                        </ul>
-                        <img src="/images/produit/LogoFA.png" alt="Logo du site, blason et nom" class="float-right" width="150">
-                        {# <h1>AMIENS ARCHERIE</h1> #}
-
-                    </div>
-                </nav>
-            <div>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -70,7 +112,7 @@
 
     <br>
     <footer>
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning rounded">
             <h5>HBg Amiens Archerie 2021</h5>
         </nav>
     </footer>

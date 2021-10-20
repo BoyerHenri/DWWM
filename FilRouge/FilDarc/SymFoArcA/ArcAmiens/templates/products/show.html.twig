@@ -81,6 +81,7 @@
             <button type="button" class="btn btn-light btn-block">
                 <a href="{{ path('products_edit', {'id': product.id}) }}">ADMIN : <i class="bi bi-box-seam"> Modifier la fiche produit.</i></a>   
                 {{ include('products/_delete_form.html.twig') }}
+            </button>
         {% else %}
             {# 2021 HBg #}
         {% endif %}

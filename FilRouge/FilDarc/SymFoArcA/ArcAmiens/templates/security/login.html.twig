@@ -9,9 +9,13 @@
     {% endif %}
 
     {% if app.user %}
+        {#
         <div class="mb-3">
-            Connecté sous... {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecter</a>
+            <span>
+                Connecté sous... {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnecter</a>
+            </span>
         </div>
+        #}
     {% endif %}
 
     <h1 class="text-center"> Portail client </h1>
@@ -19,59 +23,82 @@
     <div class="container">
       
         <div class="card-group">
+
             {# Fenetre gauche #}
-            <div class="card bg-warning pl-4 pr-4 pb-4 pt-4">
-                <strong>A votre écoute...</strong>
-                <br>
-                Que vous soyez un particulier ou un club, nos conseillers restent à votre disposition 
-                pour toute demande. <br><br>
-                Ouvrez un compte client ou connectez-vous pour accéder à votre panier et consulter le suivi des commandes.<br>
-                {# OU enregistrement #}
-                <div>
-                    <button class="btn btn-sm btn-light ml-4 mr-4 type="submit"" type="submit">
-                        <a href="{{ path('app_register') }}"> Ouvrir un compte client</a>  
-                    </button>
-                </div>
-                Nous demander pour toute intervention ou réglage matériel au
-                <br>
-                <strong>06 15 23 14 36</strong>
-                <br><br>
-                Nos techniciens qualifiés restent à votre écoute. Des frais supplémentaires peuvent
-                être ajoutés.
-            </div>
+            <div class="card bg-warning pl-4 pr-2 pb-4 pt-4">
 
-            {# Connection #}
-            <div class="row justify-content-center align-items-center text-center">
-                
-                <div class="card bg-warning ml-4 pl-4 pr-4 pb-4 pt-4">
-                    <h2>CONNECTION</h2>
-                    <label for="inputUsername">E-mail</label>
-                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-                    <br>
-                    <label for="inputPassword">Mot de passe</label>
-                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <div class="row">
+                    <div class="col-md-12">
+                        {# Image poulie #}
+                        <img src="/images/PortailCli.jpg" alt="Poulie et presse, gros plan" class="float-left mr-2">
+                        <strong>A votre écoute...</strong>
+                        <br>
+                        <p>Que vous soyez un particulier ou un club, nos conseillers restent à votre disposition 
+                        pour toute demande.</p>
+                        <br>
+                        Ouvrez un compte client ou connectez-vous pour accéder à votre panier et consulter le suivi des commandes.<br>
+                        {# OU enregistrement #}
+                        <br>
+                        <br>
+                        <br>
 
-                    <input type="hidden" name="_csrf_token"
-                        value="{{ csrf_token('authenticate') }}">
+                        {# Verifie si qqn est connecté #}
+                        {% if not app.user %}
+                            <div class="text-center">
+                                <button class="btn btn-lg btn-light ml-4 mr-4 type="submit"" type="submit">
+                                    <a href="{{ path('app_register') }}"> Ouvrir un compte client</a>  
+                                </button>
+                            </div>
+                        {% endif %}
 
-                    {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html  
-                    <div class="checkbox mb-3 text-left">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Rester connecté
-                        </label>
+                        <br>
+                        <br>
+                        Nous demander pour toute intervention ou réglage matériel au :
+                        <br>
+                        <br>
+                        <h4  class="text-center"><strong>06 15 23 14 36 ou arcamiens@aol.fr</strong></h4>
+                        Nos techniciens qualifiés restent à votre écoute. 
+                        <br>
+                        Des frais supplémentaires peuvent
+                        être ajoutés : passage sous presse, entretien, découpe de fléches... 
+                        <br>
+                        (Nous consulter)
                     </div>
-                    #}
-                    <br>
-                    <h6>
-                        <button class="btn btn-sm btn-dark mr-4 float-right" type="submit">
-                            <i class="bi bi-check-circle"> Valider</i>
-                        </button>
-                    </h6>
                 </div>
             </div>
-        
+
+            {# Connection (Verifie si qqn est connecté) #}
+            {% if not app.user %}
+                <div class="row justify-content-center align-items-center text-center">
+                    <div class="card bg-warning ml-4 pl-4 pr-4 pb-4 pt-4">
+                        <h2>CONNECTION</h2>
+                        <label for="inputUsername">E-mail</label>
+                        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+                        <br>
+                        <label for="inputPassword">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                        <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}">
+                        {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html  
+                        <div class="checkbox mb-3 text-left">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Rester connecté
+                            </label>
+                        </div>
+                        #}
+                        <br>
+                        <h6>
+                            <button class="btn btn-sm btn-dark mr-4 float-right" type="submit">
+                                <i class="bi bi-check-circle"> Valider</i>
+                            </button>
+                        </h6>
+                    </div>
+                </div>
+            {% endif %}
+
         </div>
         
     </div>

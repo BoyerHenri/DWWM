@@ -4,10 +4,6 @@
 
 {% block body %}
     <style>
-        .icon-view { color: #0000FF; }
-        .icon-buy { color: #000000; }
-        .ok-icon { color: #0000FF; }
-        .no-icon { color: #FF0000; }
     </style>
 
 {# <img src="{{ asset('images/produit/1.jpeg') }}" class="background--page" alt="..."> #}
@@ -42,8 +38,7 @@
                 {# <td>{{ product.UnitsInStock }}</td> #}
                 {#  <td>{{ product.UnitsOnOrder }}</td> #}
                 {# <td>{{ product.ReorderLevel }}</td> #}
-                <td>{{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"></i>' : '<i class="bi bi-x-octagon no-icon"></i>' }}</td>
-    
+                <td>{{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"></i>' : '<i class="bi bi-x-octagon no-icon"></i>' }}</td>   
                 <td>
                     <a href="{{ path('products_show', {'id': product.id}) }}"><i class="bi bi-info-circle-fill icon-view"></i></a>
                     {# <a href="{{ path('products_edit', {'id': product.id}) }}">edit</a> #}
@@ -59,14 +54,12 @@
         {% endfor %}
         </tbody>
     </table>
-
     {# Ajout de produit / ADMIN #}
-    <button type="button" class="btn btn-light btn-block">
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('products_new') }}">ADMIN : <i class="bi bi-box-seam"> Insérer un nouveau produit.</i></a>
+    {% if is_granted('ROLE_ADMIN') %}
+            <button type="button" class="btn btn-light btn-block">
+                <a href="{{ path('products_new') }}">ADMIN : <i class="bi bi-box-seam"> Insérer un nouveau produit.</i></a>
+            </button>
         {% else %}
-            2021 
-        {% endif %}
-    </button>
-
+    {% endif %}
+    
 {% endblock %}
