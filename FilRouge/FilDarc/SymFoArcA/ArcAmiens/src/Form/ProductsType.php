@@ -36,7 +36,7 @@ class ProductsType extends AbstractType
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
+                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\,\'\.\_\-\s]+$/',
                         'message' => 'Caratère(s) non valide(s)'
                     ]),
                     new NotBlank([
@@ -76,15 +76,15 @@ class ProductsType extends AbstractType
             ->add('QuantityPerUnit', TextType::class, [
                 'label' => 'Description du lot',
                 'attr' => [
-                    'placeholder' => 'Quantité par unité',
+                    'placeholder' => 'Description du lot',
                 ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\_\-\s]+$/',
-                        'message' => 'Veuillez saisir une description correcte.'
+                        'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\,\'\.\_\-\s]+$/',
+                        'message' => 'Veuillez saisir une description du lot correcte !'
                     ]),
                     new NotBlank([
-                        'message' => 'Veuillez saisir une quantité par unité !'
+                        'message' => 'Veuillez saisir une une description du lot correcte !'
                     ]),
                 ]
             ])

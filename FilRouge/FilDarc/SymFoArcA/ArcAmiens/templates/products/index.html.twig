@@ -3,14 +3,12 @@
 {% block title %}Catalogue...{% endblock %}
 
 {% block body %}
-    <style>
-    </style>
-
+  
 {# <img src="{{ asset('images/produit/1.jpeg') }}" class="background--page" alt="..."> #}
 
-
-
     <h1 class="text-center">Notre catalogue</h1>
+
+     {# Tableau de base (BACKUP) #}
     <table class="table text-center table-striped table-warning">
         <thead>
             <tr>
@@ -53,7 +51,51 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> 
+
+    {# Cadres produit #}
+    <div class="container">
+        <div class="card-columns">
+            {% for product in products %}
+                
+                <div class="card p-3">
+                    {# Nom du produit & catégorie #}
+                    <h5 class="card-title text-center">
+                        <mark>
+                            {{ product.ProductName }}
+                        </mark>
+                        <br>
+                        <small>
+                            {{ product.SupplierID }}
+                        </small>                        
+                    </h5>
+                    <img class="card-img-top" src="/images/produit/{{product.Picture}}" width="90 %" alt="Image produit">
+                    {# Categorie #}
+                    <small class="text-center">
+                        {{ product.CategoryID }}
+                    </small>
+                    <div class="card-body">                      
+                        {# Description / Conditionnement #}
+                        <p class="card-text">
+                            {{ product.QuantityPerUnit }}
+                        </p>
+                    </div>
+                    {# Disponibilité #}
+                    <div class="card-footer">
+                        <small class="text-muted float-right">
+                            {{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"> En stock</i>' : '<i class="bi bi-x-octagon no-icon"> Non disponible</i>' }}
+                        </small>
+                        <small class="text-muted float-left">
+                            <a href="{{ path('cart_add',{'id': product.id}) }}"><i class="bi bi-cart4 icon-buy"></i></a>
+                        </small>
+                    </div>
+                </div>
+                {% else %}
+                    Aucun enregistrement dans le catalogue
+            {% endfor %}
+        </div>
+    </div>
+
     {# Ajout de produit / ADMIN #}
     {% if is_granted('ROLE_ADMIN') %}
             <button type="button" class="btn btn-light btn-block">

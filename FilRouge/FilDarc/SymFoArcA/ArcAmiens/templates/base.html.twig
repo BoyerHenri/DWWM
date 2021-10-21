@@ -21,8 +21,9 @@
 
         {# Styles #}
         <style>
+            {# Style IMAGE #}
             img { max-width: 100%; height: auto;  margin: 0 auto;}
-            .icon-back { color: #FFC300; }
+            {# Styles BODY #}
             body{ 
                 background-color: #DBDBDB; 
                 background-image:url(/images/Fond.jpeg);
@@ -30,6 +31,7 @@
                 font-family: 'Josefin Sans', sans-serif; 
                 font-size: 18px;
             }
+            {# Styles POLICE #}
             h1,h2 {font-family: 'Anton', sans-serif; }
             h3,h4,h5,h6 {
                font-family: 'Josefin Sans', sans-serif; 
@@ -37,22 +39,29 @@
             p {
                 font-family: 'Josefin Sans', sans-serif; 
             }
-            {# Lettrine #}
+            {# Style LETTRINE #}
             p::first-letter {
                 color: red;
                 font-size: 130%;
             }
+            {# Styles ICONES #}
             .icon-view { color: #0000FF; }
-            .icon-buy { color: #000000; }
+            .icon-buy { color: #FF0000; }
             .ok-icon { color: #0000FF; }
             .no-icon { color: #FF0000; }
+            .icon-back { color: #FFC300; }
+            {# Styles STABILO #}
+            mark {
+                background-color: yellow;
+                color: black;
+            }
         </style>
         
     </head>
     <body>
         <div class="container">
             <!-- NavBar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-warning rounded">
+            <nav class="navbar navbar-expand-lg navbar-light bg-warning rounded-circle">
                 <a class="navbar-brand" href="{{ path('home') }}"><i class="bi bi-house-fill"> Accueil </i></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

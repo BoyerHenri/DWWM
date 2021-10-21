@@ -30,7 +30,7 @@ class Products
     private $CategoryID;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $QuantityPerUnit;
 

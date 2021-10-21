@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 21 oct. 2021 à 15:08
+-- Généré le : ven. 15 oct. 2021 à 10:38
 -- Version du serveur :  10.3.31-MariaDB-0ubuntu0.20.04.1
 -- Version de PHP : 7.4.3
 
@@ -118,7 +118,7 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `product_name` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `quantity_per_unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity_per_unit` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `unit_price` decimal(10,4) NOT NULL DEFAULT 0.0000,
   `units_in_stock` smallint(6) NOT NULL DEFAULT 0,
   `units_on_order` smallint(6) NOT NULL DEFAULT 0,
@@ -133,11 +133,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `category_id`, `quantity_per_unit`, `unit_price`, `units_in_stock`, `units_on_order`, `reorder_level`, `discontinued`, `supplier_id_id`, `picture`) VALUES
-(1, 'Produit Test 1', 1, '10', '100.0000', 50, 2, 10, 1, 1, '1.jpeg'),
-(96, 'Produit Test 2', 1, '5', '666.0000', 3, 2, 1, 1, 1, '96.jpeg'),
-(97, 'Produit Test 3', 2, '10', '33.0000', 5, 0, 5, 1, 1, '97.jpeg'),
-(98, 'Produit Test 4', 3, '1222', '25.0000', 5, 1, 3, 1, 1, '98.jpeg'),
-(99, 'Chai CHIN', 1, 'Arc débutant parfait pour l\'initiation. PUTE', '4.0000', 20, 1, 1, 1, 1, '99.jpeg');
+(1, 'Produit Test', 1, '10', '100.0000', 50, 2, 10, 1, 1, '1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -187,8 +183,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
 (1, 'boyerhenri@sfr.fr', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$qUUuvk6L9fmKll4SCInBAQ$rGd8/8drLWJKlmHZYooYkqQfLyesRC2+sZ/srZesuv0'),
 (2, 'batman@asylum.fr', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$fOQcAVmWXA/8/bY60Gho0g$3CWbzzFqnRN0kNtLuWNsYnDtI+TMjhw6iFKCc4Nf3Oo'),
-(3, 'superman@sfr.fr', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$Jf1Xdd6XDVuHsAuQo2+utw$SBaCTFck1JpfXI9/6jgd0LOYQat23ql5upErz/+aYIY'),
-(5, 'pute@borgne.fr', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$UrTuquYREyty8xYGzqcW1A$0qKS6G/40hgUvJ6lG1vliYB8tdP7zLU8NZi2bq8U8kI');
+(3, 'superman@sfr.fr', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$Jf1Xdd6XDVuHsAuQo2+utw$SBaCTFck1JpfXI9/6jgd0LOYQat23ql5upErz/+aYIY');
 
 --
 -- Index pour les tables déchargées
@@ -267,7 +262,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT pour la table `suppliers`
@@ -279,7 +274,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
