@@ -29,15 +29,15 @@ class ProductsType extends AbstractType
 
             // Champ Nom Du Produit //
             ->add('ProductName', TextType::class, [
-                'label' => 'Nom du Produit',
-                'help' => 'Indiquez ici le nom complet du produit',
+                'label' => 'Nom du Produit / Modéle.',
+                'help' => 'Indiquez ici le nom complet du produit.',
                 'attr' => [
-                    'placeholder' => 'Produit',
+                    'placeholder' => '',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[0-9A-Za-zéèàçâêûîôäëüïö\,\'\.\_\-\s]+$/',
-                        'message' => 'Caratère(s) non valide(s)'
+                        'message' => 'Caratère(s) non valide(s) !'
                     ]),
                     new NotBlank([
                         'message' => 'Veuillez saisir un nom de produit !'
@@ -47,36 +47,38 @@ class ProductsType extends AbstractType
 
             // Champ Nom Du Fournisseur //
             ->add('SupplierID', EntityType::class, [
-                'label' => 'Nom du fournisseur',
+                'label' => 'Nom du fournisseur.',
                 'class' => Suppliers::class,
                 'choice_label' => 'CompanyName',
                 'placeholder' => '',
+                'help' => 'Selectionnez le fournisseur / fabriquant.',
                 'constraints' => [
                     new NotBlank([
-                      'message' => 'Veuillez choisir un nom de fournisseur !'
+                      'message' => 'Veuillez choisir le fournisseur / fabriquant !'
                     ]),
                 ]
             ])
 
             // Champ Id De La Catégorie //
             ->add('CategoryID', TextType::class, [
-                'label' => 'Id de la catégorie',
+                'label' => 'Catégorie.',
+                'help' => 'Selectionnez une catégorie.',
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^[0-9]+$/',
-                        'message' => 'Veuillez saisir une id de catégorie valide.'
+                        'message' => 'Veuillez saisir la catégorie de l\'article.'
                     ]),
                     new NotBlank([
-                        'message' => 'Veuillez saisir une id de la catégorie !'
+                        'message' => 'Veuillez saisir la catégorie de l\'article.'
                     ]),
                 ]
             ])
 
             // Champ Quantité Par Unité //
             ->add('QuantityPerUnit', TextType::class, [
-                'label' => 'Description du lot',
+                'label' => 'Description du lot / quantité par unité.',
                 'attr' => [
-                    'placeholder' => 'Description du lot',
+                    'placeholder' => 'Ex : Tubes alu x 6 ECLIPSE.',
                 ],
                 'constraints' => [
                     new Regex([
@@ -91,9 +93,10 @@ class ProductsType extends AbstractType
 
             // Champ Prix Unitaire //
             ->add('UnitPrice', TextType::class, [
-                'label' => 'Prix Unitaire',
+                'label' => 'Prix Unitaire.',
                 'attr' => [
-                    'placeholder' => 'Prix Unitaire',
+                    'placeholder' => '',
+                    'help' => 'Prix unitaire du lot.',
                 ],
                 'constraints' => [
                     new Regex([
@@ -108,9 +111,10 @@ class ProductsType extends AbstractType
 
             // Champ Quantité En Stock //
             ->add('UnitsInStock', TextType::class, [
-                'label' => 'Quantité en stock',
+                'label' => 'Quantité en stock.',
+                'help' => 'Mise à jour du stock.',
                 'attr' => [
-                    'placeholder' => 'Stock',
+                    'placeholder' => '',                    
                 ],
                 'constraints' => [
                     new Regex([
@@ -125,9 +129,10 @@ class ProductsType extends AbstractType
 
             // Champ Quantité en commande //
             ->add('UnitsOnOrder', TextType::class, [
-                'label' => 'Quantité en commande',
+                'label' => 'Quantité en commande.',
+                'help' => 'Commande en cours ou non.',
                 'attr' => [
-                    'placeholder' => 'Quantité en commande',
+                    'placeholder' => '',
                 ],
                 'constraints' => [
                     new Regex([
@@ -142,9 +147,10 @@ class ProductsType extends AbstractType
 
             // Champ Niveau D'alerte //
             ->add('ReorderLevel', TextType::class, [
-                'label' => 'Niveau d\'alerte',
+                'label' => 'Stock d\'alerte.',
+                'help' => 'Mise à jour du stock d\'alerte.',
                 'attr' => [
-                    'placeholder' => 'Niveau d\'alerte',
+                    'placeholder' => '',
                 ],
                 'constraints' => [
                     new Regex([
@@ -160,13 +166,14 @@ class ProductsType extends AbstractType
 
             // Champ Photo //
             ->add('picture2', FileType::class, [
-                'label' => 'Photo de profil',
+                'label' => 'Photo du produit',
+                'help' => 'Choisissez un fichier en local.',
                 //unmapped => fichier non associé à aucune propriété d'entité, validation impossible avec les annotations
                 'mapped' => false,
                 // pour éviter de recharger la photo lors de l'édition du profil
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Produit',
+                    'placeholder' => 'Fichier...',
                     'value' => 'Image'
                 ],
                 'constraints' => [
@@ -181,7 +188,8 @@ class ProductsType extends AbstractType
 
             // Champ Discontinued //
             ->add('Discontinued', TextType::class, [
-                'label' => 'Discontinued',
+                'label' => 'Disponibilité.',
+                'help' => '[1=Disponible] [0=Indisponible]',
                 'attr' => [
                     'placeholder' => '1',
                     'value' =>1

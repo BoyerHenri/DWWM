@@ -8,7 +8,17 @@
 
     <h1 class="text-center">Notre catalogue</h1>
 
-     {# Tableau de base (BACKUP) #}
+    {# Ajout de produit / ADMIN #}
+    {% if is_granted('ROLE_ADMIN') %}
+            <button type="button" class="btn btn-light btn-block m-1">
+                <a href="{{ path('products_new') }}">ADMIN : <i class="bi bi-box-seam"> Insérer un nouveau produit.</i></a>
+            </button>
+        {% else %}
+    {% endif %}
+
+    {# Tableau de base (BACKUP) #}
+    <h6>
+    <small>
     <table class="table text-center table-striped table-warning">
         <thead>
             <tr>
@@ -27,7 +37,7 @@
         </thead>
         <tbody>
         {% for product in products %}
-            <tr>
+            <tr class="actions">
                 {# <td>{{ product.id }}</td> #}
                 <td>{{ product.ProductName }}</td>
                 {# <td>{{ product.CategoryID }}</td> #} 
@@ -52,7 +62,8 @@
         {% endfor %}
         </tbody>
     </table> 
-
+    </small>
+    </h6>
     {# Cadres produit #}
     <div class="container">
         <div class="card-columns">
@@ -69,7 +80,10 @@
                             {{ product.SupplierID }}
                         </small>                        
                     </h5>
-                    <img class="card-img-top" src="/images/produit/{{product.Picture}}" width="90 %" alt="Image produit">
+                    {# Image produit avec lien #}
+                    <a href="{{ path('products_show', {'id': product.id}) }}">                            
+                        <img class="card-img-top" src="/images/produit/{{product.Picture}}" width="90 %" alt="Image produit">
+                    </a>
                     {# Categorie #}
                     <small class="text-center">
                         {{ product.CategoryID }}
@@ -80,28 +94,37 @@
                             {{ product.QuantityPerUnit }}
                         </p>
                     </div>
-                    {# Disponibilité #}
+                    {# Prix #}
+                    <div class="text-center card bg-warning p-2">
+                        <h2>
+                            {{ product.UnitPrice|number_format(2) }} €
+                        </h2>
+                    </div>
+                    {# Achat, Informations et Disponibilité #}
                     <div class="card-footer">
-                        <small class="text-muted float-right">
-                            {{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"> En stock</i>' : '<i class="bi bi-x-octagon no-icon"> Non disponible</i>' }}
-                        </small>
-                        <small class="text-muted float-left">
-                            <a href="{{ path('cart_add',{'id': product.id}) }}"><i class="bi bi-cart4 icon-buy"></i></a>
-                        </small>
+                        <h2>
+                            <small class="text-muted float-right">
+                                {{ product.Discontinued ? '<i class="bi bi-check-circle-fill ok-icon"> En stock</i>' : '<i class="bi bi-x-octagon no-icon"> Non disponible</i>' }}
+                            </small>
+                            
+                            {# 
+                            <small class="text-muted">
+                                <a href="{{ path('products_show', {'id': product.id}) }}"><i class="bi bi-info-circle-fill icon-view"></i></a>
+                            </small>
+                            #}
+                        
+                            <small class="text-muted float-left">                            
+                                <a href="{{ path('cart_add',{'id': product.id}) }}"><i class="bi bi-cart4 icon-buy"></i></a>
+                            </small>
+                        </h2>
                     </div>
                 </div>
                 {% else %}
-                    Aucun enregistrement dans le catalogue
+                    Aucun enregistrement dans le catalogue ! 
+                    <br>
+                    Contactez votre fournisseur.
             {% endfor %}
         </div>
     </div>
-
-    {# Ajout de produit / ADMIN #}
-    {% if is_granted('ROLE_ADMIN') %}
-            <button type="button" class="btn btn-light btn-block">
-                <a href="{{ path('products_new') }}">ADMIN : <i class="bi bi-box-seam"> Insérer un nouveau produit.</i></a>
-            </button>
-        {% else %}
-    {% endif %}
-    
+  
 {% endblock %}

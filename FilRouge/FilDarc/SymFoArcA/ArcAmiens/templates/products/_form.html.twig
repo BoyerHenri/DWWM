@@ -43,18 +43,18 @@
     </div>
 
  {# Reprend l'éléments Photo#} 
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         {{ form_row(form.picture2) }}
     </div>
 
 
  {# Reprend l'éléments Discontinued#} 
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
         {{ form_row(form.Discontinued) }}
     </div>
 
 </div>
 
-<button class="btn btn-primary float-right">{{ button_label|default('Sauvegarder') }}</button> {# Correspond Au Bouton Validation #}
+<button class="btn btn-primary float-right m-2">{{ button_label|default('Sauvegarder') }}</button> {# Correspond Au Bouton Validation #}
 
 {{ form_end(form) }}

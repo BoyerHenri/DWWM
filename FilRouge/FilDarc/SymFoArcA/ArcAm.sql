@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 21 oct. 2021 à 15:08
+-- Généré le : ven. 22 oct. 2021 à 12:01
 -- Version du serveur :  10.3.31-MariaDB-0ubuntu0.20.04.1
 -- Version de PHP : 7.4.3
 
@@ -133,11 +133,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_name`, `category_id`, `quantity_per_unit`, `unit_price`, `units_in_stock`, `units_on_order`, `reorder_level`, `discontinued`, `supplier_id_id`, `picture`) VALUES
-(1, 'Produit Test 1', 1, '10', '100.0000', 50, 2, 10, 1, 1, '1.jpeg'),
+(1, 'HOYT PREVAIL 40 X3 2017', 1, 'L\'arc à poulie le plus abouti de chez HOYT avec une géométrie améliorant la performance. Cames optimisées pour la vitesse et la performance au travers de leur longueur de tirage.', '1350.0000', 2, 0, 1, 0, 1, '1.jpeg'),
 (96, 'Produit Test 2', 1, '5', '666.0000', 3, 2, 1, 1, 1, '96.jpeg'),
 (97, 'Produit Test 3', 2, '10', '33.0000', 5, 0, 5, 1, 1, '97.jpeg'),
 (98, 'Produit Test 4', 3, '1222', '25.0000', 5, 1, 3, 1, 1, '98.jpeg'),
-(99, 'Chai CHIN', 1, 'Arc débutant parfait pour l\'initiation. PUTE', '4.0000', 20, 1, 1, 1, 1, '99.jpeg');
+(99, 'Core PULSE', 1, 'Arc débutant parfait pour l\'initiation. Avec viseur, 3 flèches, fausse corde, sacoche, protège bras et repose flèche.', '59.9000', 10, 0, 4, 1, 1, '99.jpeg');
 
 -- --------------------------------------------------------
 

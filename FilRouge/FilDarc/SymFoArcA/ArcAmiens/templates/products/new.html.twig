@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau Products{% endblock %}
+{% block title %}Rajout d'article{% endblock %}
 
 {% block body %}
 
 <div class="container">
-
+    <div class="card p-2">
     <h1>Ajout d'un nouveaux produit</h1>
 
     {{ include('products/_form.html.twig') }}
 
-    <a class="btn btn-secondary" href="{{ path('products_index') }}">Retour à la liste</a>
-
+    <a class="btn btn-secondary m-2 text-center" href="{{ path('products_index') }}">Retour à la liste</a>
+    </div>
 </div>
 
 {% endblock %}

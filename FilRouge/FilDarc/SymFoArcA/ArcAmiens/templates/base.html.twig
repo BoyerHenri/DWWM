@@ -55,6 +55,13 @@
                 background-color: yellow;
                 color: black;
             }
+
+            tr:.actions {
+                visibility: hidden;
+            }
+            table:hover .actions {
+                visibility: visible;
+            }
         </style>
         
     </head>
@@ -78,7 +85,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-clipboard-check"> Espace client </i></a>
                         </li>
-                        {# Logout si login #}
+                        {# Deconnection #}
                         <li>
                             {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}                                       
                                 <div class="col">
@@ -86,7 +93,7 @@
                                         <a href="{{ path('app_logout') }}"> Se deconnecter</a>                                      
                                     </button>
                                 </div>
-                            {% endif %}
+                            {% endif %}                            
                         </li>
                     </ul>
                 </div>
@@ -95,10 +102,16 @@
             </nav>
                 {# Verifie si qqn est connecté #}
             {% if app.user %}
-                <div class="text-center card mb-4">
-                        Connecté sous : 
-                        {{ app.user.username }}
-                </div>
+                {% if is_granted('ROLE_ADMIN') %} 
+                    <div class="text-center card bg-danger">
+                            Connecté sous : ADMIN
+                    </div>
+                {% endif%}
+                {% if is_granted('ROLE_USER') %} 
+                    <div class="text-center card mb-4">
+                            {{ app.user.username }}
+                    </div>
+                {% endif%}
             {% endif %}
         <div>
 

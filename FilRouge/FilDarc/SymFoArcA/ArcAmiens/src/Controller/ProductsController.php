@@ -74,7 +74,7 @@ class ProductsController extends AbstractController
                     $entityManager->persist($product);
                     $entityManager->flush();
                 } catch (FileException $e) {
-            // gestion de l'erreur si le déplacement ne s'est pas effectué
+                // gestion de l'erreur si le déplacement ne s'est pas effectué
                 }
             }
      

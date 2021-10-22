@@ -3,6 +3,11 @@
 {% block title %}Détails du produit{% endblock %}
 
 {% block body %}
+    <style>
+        table.table-bordered{
+        border:2px solid red;
+    }
+    </style>
 
     <div class="container">
         <h1>Details de...</h1>
@@ -11,84 +16,88 @@
             <img src="{{ asset('/images/produit/1.jpeg') }}" class="..." alt="...">
         #}
 
-        <br>
-        <br> 
+        <div class="card p-4">
+            <mark>
+                <h2 class="text-center"> {{ product.ProductName }} </h2>
+            </mark>
+            <p>
+            Tous nos produits sont garantis 1 an, en plus de la garantie constructeur. Délais de rétractation de 
+            7 jours, réglages en atelier possible, nous contacter.
+            </p>
+            {# Editer ou Supprimer / ADMIN #}
+            {% if is_granted('ROLE_ADMIN') %}
+                <br>
+                    <button type="button" class="btn btn-light btn-block">
+                        <a href="{{ path('products_edit', {'id': product.id}) }}">ADMIN : <i class="bi bi-box-seam"> Modifier la fiche produit.</i></a>   
+                        {{ include('products/_delete_form.html.twig') }}
+                    </button>
+                <br>
+            {% else %}
+                {# 2021 HBg #}
+            {% endif %} 
 
-        <h2 class="text-center"> {{ product.ProductName }} </h2>
+            <table class="table table-bordered table-striped table-warning">
+                <tbody>
+                    <tr>
+                        <th>{# {{ product.ProductName }} #}</th>
+                        <td>
+                            {#{ product.Picture }#}
+                        <img src="/images/produit/{{product.Picture}}" alt="Photo du produit">
+                        </td>
+                    </tr>
+                    <tr>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th>Id</th>
+                            <td>{{ product.id }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th><small>Nom du produit</small></th>
+                        <td>{{ product.ProductName }}</td>
+                    </tr>
+                    <tr>
+                        <th><small>Catégorie</small></th>
+                        <td>{{ product.CategoryID }}</td>
+                    </tr>
+                    <tr>
+                        <th><small>Description</small></th>
+                        <td>{{ product.QuantityPerUnit }}</td>
+                    </tr>
+                    <tr>
+                        <th><small>Prix</small></th>
+                        <td>{{ product.UnitPrice }}</td>
+                    </tr>
+                    <tr>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th><small>Stocks actuels<small></th>
+                            <td>{{ product.UnitsInStock }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th><small>En commande</small></th>
+                            <td>{{ product.UnitsOnOrder }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th><small>Stock d'alerte</small></th>
+                            <td>{{ product.ReorderLevel }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <th><small>Disponibilité</small></th>
+                            <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
 
-        <br>
-        <br> 
-
-        <table class="table table-bordered table-striped table-warning">
-            <tbody>
-                 <tr>
-                    <th>{{ product.ProductName }}</th>
-                    <td>
-                        {#{ product.Picture }#}
-                       <img src="/images/produit/{{product.Picture}}" width="90 %" alt="Photo du produit">
-                    </td>
-                </tr>
-                <tr>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <th>Id</th>
-                        <td>{{ product.id }}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    <th>Nom du produit</th>
-                    <td>{{ product.ProductName }}</td>
-                </tr>
-                <tr>
-                    <th>Catégorie</th>
-                    <td>{{ product.CategoryID }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ product.QuantityPerUnit }}</td>
-                </tr>
-                <tr>
-                    <th>Prix</th>
-                    <td>{{ product.UnitPrice }}</td>
-                </tr>
-                <tr>
-                    <th>Stocks actuels</th>
-                    <td>{{ product.UnitsInStock }}</td>
-                </tr>
-                <tr>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <th>En commande</th>
-                        <td>{{ product.UnitsOnOrder }}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <th>Stock d'alerte</th>
-                        <td>{{ product.ReorderLevel }}</td>
-                    {% endif %}
-                </tr>
-                <tr>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <th>Disponibilité</th>
-                        <td>{{ product.Discontinued ? 'Oui' : 'Non' }}</td>
-                    {% endif %}
-                </tr>
-            </tbody>
-        </table>
-
-        {# Editer ou Supprimer / ADMIN #}
-       
-        {% if is_granted('ROLE_ADMIN') %}
-            <button type="button" class="btn btn-light btn-block">
-                <a href="{{ path('products_edit', {'id': product.id}) }}">ADMIN : <i class="bi bi-box-seam"> Modifier la fiche produit.</i></a>   
-                {{ include('products/_delete_form.html.twig') }}
+            {# Retour #}
+            <button type="button" class="btn btn-dark btn-block">
+                <i class="bi bi-box-arrow-in-up-left icon-back"><a href="{{ path('products_index') }}"> Retour au catalogue</a></i>
             </button>
-        {% else %}
-            {# 2021 HBg #}
-        {% endif %}
-
-        {# Retour #}
-        <button type="button" class="btn btn-light btn-block ">
-            <i class="bi bi-box-arrow-in-up-left icon-back"><a href="{{ path('products_index') }}"> Retour au catalogue</a></i>
-        </button>
+        </div>
     </div>
 {% endblock %}
