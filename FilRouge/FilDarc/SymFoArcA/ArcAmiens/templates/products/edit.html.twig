@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Products{% endblock %}
+{% block title %}Editer fiche produit{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1>Edit Products</h1>
+        <h1>Editer fiche produit</h1>
         <div class="form-row">
                 
             {{ include('products/_form.html.twig', {'button_label': 'Update'}) }}
         
         </div>
     
-        
-
         {{ include('products/_delete_form.html.twig') }}
+        
     </div>
 {% endblock %}
